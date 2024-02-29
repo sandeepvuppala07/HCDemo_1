@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>RTI Login</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container">
+		<h1>RTA Login</h1>
+		<hr>
+		<h2>User Registration Form For RTA Application</h2>
+
+		<!--<form action="#" th:action="@{/register}" th:object="${rtaUserDetailsDto}" method="POST">
+			<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+              <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>    
+</div>
+			<label for="citizen">Citizen</label><strong style="color: red;">*</strong>
+			<select th:field="*{citizen}" class="form-control mb-4 col-4">
+				<option th:value="1" th:text="Yes"></option>
+				<option th:value="0" th:text="No"></option>
+			</select>
+			
+			<label for="userName">Name</label><strong style="color: red;">*</strong>
+			<input type="text" th:field="*{userName}" placeholder="Name" class="form-control mb-4 col-4">
+			<span th:if="${#fields.hasErrors('userName')}" class="error" th:errors="*{userName}">Name Error</span> 
+			
+			<label>Father's Name</label><strong style="color: red;">*</strong>
+			<input type="text" th:field="*{fatherName}" placeholder="Father's Name" class="form-control mb-4 col-4">
+			
+			<label>Gender</label>
+			<select th:field="*{gender}" class="form-control mb-4 col-4">
+				<option th:value="1" th:text="Male"></option>
+				<option th:value="0" th:text="Female"></option>
+			</select>
+			
+			<label>Address</label><strong style="color: red; font-size:70%;">* <br>Note:- Only alphabets A-Z a-z number
+				0-9 and special characters , . - _ ( ) / @ = ? \ are allowed.</strong>
+			<input type="text" th:field="*{address}" placeholder="Address" class="form-control mb-4 col-4">
+			
+			<label>State</label><strong style="color: red;">*</strong>
+			<select th:field="*{stateId}" class="form-control mb-4 col-4">
+				<option th:value="1" th:text="'Andhra Pradesh'"></option>
+				<option th:value="0" th:text="Telangana"></option>
+			</select>
+			
+			<label>District</label><strong style="color: red;">*</strong>
+			<select th:field="*{districtId}" class="form-control mb-4 col-4">
+				<option th:value="1" th:text="Hyderabad"></option>
+				<option th:value="0" th:text="Secunderabad"></option>
+			</select>
+			
+			<label>Pincode</label><strong style="color: red;">*</strong>
+			<input type="text" th:field="*{pincode}" placeholder="Pincode" class="form-control mb-4 col-4">
+			
+			<label>Is Applicant below proverty line?</label><strong style="color: red;">*</strong>
+			<select th:field="*{bpl}" class="form-control mb-4 col-4">
+				<option th:value="1" th:text="Yes"></option>
+				<option th:value="0" th:text="No"></option>
+			</select>
+			
+			<label>BPL Card No</label><strong style="color: red;">*</strong>
+			<input type="text" th:field="*{bplNo}" placeholder="Address" class="form-control mb-4 col-4">
+			
+			<label>Scanned copy of BPL card</label><strong style="color: red; font-size:70%;">* <br> (only pdf & jpeg
+				files having size up to 1 MB)</strong>
+			<input type="file" th:field="*{bplCard}" accept="image/*" placeholder="BPL Card File"
+				class="form-control mb-4 col-4">
+				
+			<label>Security Question</label><strong style="color: red;">*</strong>
+			<select th:field="*{securityQuesId}" class="form-control mb-4 col-4">
+				<option th:value="1">What is your Mother's maiden name?</option>
+				<option th:value="2">What is the name of your first School?</option>
+				<option th:value="3">What is the name of your favourite book?</option>
+				<option th:value="4">Which city were you born in?</option>
+			</select>
+			
+			<label>Security Answer</label><strong style="color: red;">*</strong>
+			<input type="text" th:field="*{securityAns}" placeholder="Pincode" class="form-control mb-4 col-4">
+			
+			<label>Email Id</label><strong style="color: red; font-size:70%;">* <br> (to be used as USERNAME)*</strong>
+			<input type="text" th:field="*{mailId}" placeholder=" Email" class="form-control mb-4 col-4">
+			
+			<label>Mobile No</label><strong style="color: red; font-size:70%;">* <br> (For receiving SMS alerts and
+				Activation Key)*</strong>
+			<input type="text" th:field="*{mobileNo}" placeholder=" Email" class="form-control mb-4 col-4">
+			<button type="submit" class="btn btn-info col-2">Register</button>
+		</form>
+-->
+		<hr>
+
+		<!--<a th:href="@{/}"> Back to Employee List</a>-->
+	</div>
+</body>
+
+</html>

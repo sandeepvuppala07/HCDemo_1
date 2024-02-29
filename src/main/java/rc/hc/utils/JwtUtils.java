@@ -1,0 +1,8 @@
+package rc.hc.utils;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class JwtUtils {
+
+}

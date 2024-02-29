@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>User Registration Form</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+</head>
+<style>
+	.error{
+		color: red;
+	}
+</style>
+<script type="text/javascript">
+            
+function bpldropdown(){
+	var bpltype = document.getElementById("bpldrop");
+	 if (bpltype.value ==1 ){
+         document.getElementById("bplfile").disabled = false;
+         document.getElementById("bplcardno").disabled = false;
+      }
+      else{
+		   document.getElementById("bplfile").disabled = true;
+         document.getElementById("bplcardno").disabled = true;
+	  }
+}
+
+</script>
+<body onload="javascript:bpldropdown()">
+	<div class="container">
+		<h1>High Court For State of Telangana</h1>
+		<hr>
+		<h2>User Registration Form For RTA Application</h2>
+
+		<form action="#" th:action="@{/register}" th:object="${rtaUserDetailsDto}" method="POST">
+<!--			<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+              <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>    
+</div>-->
+			<label for="citizen">Citizen</label><strong style="color: red;">*</strong>
+			<select th:field="*{citizen}" class="form-control mb-4 col-4">
+				<option th:value="1" th:text="Yes"></option>
+				<option th:value="0" th:text="No"></option>
+			</select>
+			
+			<label for="userName">Name</label><strong style="color: red;">*</strong><!--th:field="*{userFirstName}"-->
+			<p style="color: red;" th:if="${#fields.hasErrors('userName')}" class="error" th:errors="*{userName}"></p> 
+			<input type="text" th:field="*{userName}" placeholder="Name" class="form-control mb-4 col-4" >
+			
+			
+			  <!--<p th:errors = "*{userName}" th:if="${#fields.hasErrors('userName')}"></p>-->
+			
+			<label>Father's Name</label><strong style="color: red;">*</strong>
+			<p style="color: red;" th:if="${#fields.hasErrors('fatherName')}" class="error" th:errors="*{fatherName}"></p> 
+			<input type="text" th:field="*{fatherName}" placeholder="Father's Name" class="form-control mb-4 col-4">
+			
+			
+			<label>Gender</label>
+			<select th:field="*{gender}" class="form-control mb-4 col-4">
+				<option th:value="1" th:text="Male"></option>
+				<option th:value="0" th:text="Female"></option>
+			</select>
+			
+			<label>Address</label><strong style="color: red; font-size:70%;">* <br>Note:- Only alphabets A-Z a-z number
+				0-9 and special characters , . - _ ( ) / @ = ? \ are allowed.</strong>
+				<p style="color: red;" th:if="${#fields.hasErrors('address')}" class="error" th:errors="*{address}"></p> 
+			<input type="text" th:field="*{address}" placeholder="Address" class="form-control mb-4 col-4">
+			
+			
+			<label>State</label><strong style="color: red;">*</strong>
+			<p style="color: red;" th:if="${#fields.hasErrors('stateId')}" class="error" th:errors="*{stateId}"></p> 
+			<select th:field="*{stateId}" class="form-control mb-4 col-4">
+				<option th:value="1" th:text="'Andhra Pradesh'"></option>
+				<option th:value="0" th:text="Telangana"></option>
+			</select>
+			
+			<label>District</label><strong style="color: red;">*</strong>
+			<p style="color: red;" th:if="${#fields.hasErrors('districtId')}" class="error" th:errors="*{districtId}"></p> 
+			<select th:field="*{districtId}" class="form-control mb-4 col-4">
+				<option th:value="1" th:text="Hyderabad"></option>
+				<option th:value="0" th:text="Secunderabad"></option>
+			</select>
+			
+			<label>Pincode</label><strong style="color: red;">*</strong>
+			<p style="color: red;" th:if="${#fields.hasErrors('pincode')}" class="error" th:errors="*{pincode}"></p> 
+			<input type="text" th:field="*{pincode}" placeholder="Pincode" class="form-control mb-4 col-4">
+			
+			<label>Is Applicant below proverty line?</label><strong style="color: red;">*</strong>
+			<p style="color: red;" th:if="${#fields.hasErrors('bpl')}" class="error" th:errors="*{bpl}"></p> 
+			<select th:field="*{bpl}" class="form-control mb-4 col-4" id="bpldrop" onchange="bpldropdown()">
+				<option th:value=0 th:text="No"></option>
+				<option th:value=1 th:text="Yes"></option>
+			</select>
+			
+			<label>BPL Card No</label><strong style="color: red;">*</strong>
+			<p style="color: red;" th:if="${#fields.hasErrors('bplNo')}" class="error" th:errors="*{bplNo}"></p> 
+			<input type="text" th:field="*{bplNo}" placeholder="Address" class="form-control mb-4 col-4" id="bplcardno" disabled>
+			
+			<label>Scanned copy of BPL card</label><strong style="color: red; font-size:70%;">* <br> (only pdf & jpeg
+				files having size up to 1 MB)</strong>
+				<p style="color: red;" th:if="${#fields.hasErrors('bplCard')}" class="error" th:errors="*{bplCard}"></p> 
+			<input type="file" th:field="*{bplCard}" accept="image/*" placeholder="BPL Card File"
+				class="form-control mb-4 col-4" id="bplfile" disabled="disabled">
+				
+			<label>Security Question</label><strong style="color: red;">*</strong>
+			<p style="color: red;" th:if="${#fields.hasErrors('securityQuesId')}" class="error" th:errors="*{securityQuesId}"></p> 
+			<select th:field="*{securityQuesId}" class="form-control mb-4 col-4">
+				<option th:value="1">What is your Mother's maiden name?</option>
+				<option th:value="2">What is the name of your first School?</option>
+				<option th:value="3">What is the name of your favourite book?</option>
+				<option th:value="4">Which city were you born in?</option>
+			</select>
+			
+			<label>Security Answer</label><strong style="color: red;">*</strong>
+			<p style="color: red;" th:if="${#fields.hasErrors('securityAns')}" class="error" th:errors="*{securityAns}"></p> 
+			<input type="text" th:field="*{securityAns}" placeholder="Pincode" class="form-control mb-4 col-4">
+			
+			<label>Email Id</label><strong style="color: red; font-size:70%;">* <br> (to be used as USERNAME)*</strong>
+			<p style="color: red;" th:if="${#fields.hasErrors('mailId')}" class="error" th:errors="*{mailId}"></p> 
+			<input type="text" th:field="*{mailId}" placeholder=" Email" class="form-control mb-4 col-4">
+			
+			<label>Mobile No</label><strong style="color: red; font-size:70%;">* <br> (For receiving SMS alerts and
+				Activation Key)*</strong>
+				<p style="color: red;" th:if="${#fields.hasErrors('mobileNo')}" class="error" th:errors="*{mobileNo}"></p> 
+			<input type="text" th:field="*{mobileNo}" placeholder=" Mobile No" class="form-control mb-4 col-4">
+			<button type="submit" class="btn btn-info col-2">Register</button>
+		</form>
+
+		<hr>
+
+		<!--<a th:href="@{/}"> Back to Employee List</a>-->
+	</div>
+</body>
+
+</html>
