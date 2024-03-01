@@ -1,5 +1,6 @@
 package rc.hc.dto;
 
+
 import java.io.Serializable;
 
 import javax.validation.constraints.Email;
@@ -7,9 +8,12 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import rc.hc.customvalidations.BplConstraint;
+import org.springframework.stereotype.Component;
+
+//import rc.hc.customvalidations.BplConstraint;
 
 //@BplConstraint(value = { "bpl","bplNo","bplCard" })
+@Component
 public class RtaUserdetailsDto implements Serializable{
 	
 	/**
@@ -45,7 +49,7 @@ public class RtaUserdetailsDto implements Serializable{
 	
 	@NotNull(message = "BPL Feild is Mandatory")
 	private Integer bpl ; 
-	
+	//@BplConstraint(value = { "" })
 	private String bplNo; 
 	
 	private byte [] bplCard ;
@@ -61,6 +65,22 @@ public class RtaUserdetailsDto implements Serializable{
 	
 	@Pattern(regexp = "^\\d{10}$", message = "Mobile Number is not valid")
 	private String mobileNo;
+	
+	private String userCaptcha;
+	
+	private String hiddenCaptcha;
+
+	private String realCaptcha;
+
+	private String filepath;
+	
+	public String getFilepath() {
+		return filepath;
+	}
+
+	public void setFilepath(String filepath) {
+		this.filepath = filepath;
+	}
 
 	public Integer getUserId() {
 		return userId;
@@ -189,6 +209,30 @@ public class RtaUserdetailsDto implements Serializable{
 
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
+	}
+
+	public String getUserCaptcha() {
+		return userCaptcha;
+	}
+
+	public void setUserCaptcha(String userCaptcha) {
+		this.userCaptcha = userCaptcha;
+	}
+
+	public String getHiddenCaptcha() {
+		return hiddenCaptcha;
+	}
+
+	public void setHiddenCaptcha(String hiddenCaptcha) {
+		this.hiddenCaptcha = hiddenCaptcha;
+	}
+
+	public String getRealCaptcha() {
+		return realCaptcha;
+	}
+
+	public void setRealCaptcha(String realCaptcha) {
+		this.realCaptcha = realCaptcha;
 	}
 	
 	

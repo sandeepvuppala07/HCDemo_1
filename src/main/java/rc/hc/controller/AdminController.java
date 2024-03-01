@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,70 +30,49 @@ public class AdminController {
 
 	@Autowired
 	RtaService rtaService;
-	
+
 	@Autowired
 	ImageStorageService imageStorageService;
 
-	/*
-	 * @GetMapping("/form") public ModelAndView registrationForm(){ ModelAndView
-	 * modelAndView = new ModelAndView(); RtaUserdetailsDto rtaUserDetailsDto = new
-	 * RtaUserdetailsDto(); modelAndView.setViewName("regform");
-	 * modelAndView.addObject("rtaUserDetailsDto", rtaUserDetailsDto); return
-	 * modelAndView; }
-	 */	
-	
-	
+	@Autowired
+	RtaUserdetailsDto rtaUserdetailsDto;
+
 	@GetMapping("/form")
-	public String registrationForm(Model model){
-		RtaUserdetailsDto rtaUserDetailsDto = new RtaUserdetailsDto();
-		model.addAttribute("rtaUserDetailsDto", rtaUserDetailsDto);
+	public String registrationForm(Model model,RtaUserdetailsDto rtaUserdetailsDto) {
+		rtaService.captchaService(rtaUserdetailsDto);
+		model.addAttribute("rtaUserDetailsDto", rtaUserdetailsDto);
 		return "regform";
 	}
 
-	/*
-	 * @PostMapping("/register") public ModelAndView saveUser(@Valid @ModelAttribute
-	 * RtaUserdetailsDto rtaUserDetailsDto, BindingResult bindingResult,
-	 * 
-	 * @RequestParam(value="bplcard", required = false) MultipartFile file) throws
-	 * Exception { //String uploadImage = imageStorageService.uplaodFile(file);
-	 * ModelAndView modelAndView = new ModelAndView(); if
-	 * (bindingResult.hasErrors()) { modelAndView.setViewName("regform");
-	 * modelAndView.addObject("rtaUserDetailsDto", rtaUserDetailsDto); return
-	 * modelAndView; } return new ModelAndView(); }
-	 */
-	
-	
 	@PostMapping("/register")
 	public String saveUser(@Valid @ModelAttribute("rtaUserDetailsDto") RtaUserdetailsDto rtaUserDetailsDto,
-			BindingResult bindingResult,
-			@RequestParam(value="bplcard", required = false) MultipartFile file,
+			BindingResult bindingResult, @RequestParam(value = "bplcard", required = false) MultipartFile file,
 			Model model) throws Exception {
-				//String uploadImage = imageStorageService.uplaodFile(file);
-				
-				if (bindingResult.hasErrors()) {
-					bindingResult.getAllErrors().stream().map(msg->msg.getDefaultMessage()).forEach(System.out::println);
-					model.addAttribute("rtaUserDetailsDto", rtaUserDetailsDto);
-					return "regform";
-		        }
-				return "login";
-	}
-	
+					if (bindingResult.hasErrors()) {
+						bindingResult.getAllErrors().stream().map(msg -> msg.getDefaultMessage()).forEach(System.out::println);
+						model.addAttribute("rtaUserDetailsDto", rtaUserDetailsDto);
+						return "redirect:form";
+					}
+					else if(!rtaUserDetailsDto.getUserCaptcha().equals(rtaUserDetailsDto.getHiddenCaptcha())) {
+						rtaService.captchaService(rtaUserDetailsDto);
+						model.addAttribute("rtaUserDetailsDto", rtaUserDetailsDto);
+						model.addAttribute("captchamessage", "Invalid Captcha");
+						return "redirect:form";
+					}
+					rtaService.saveUser(rtaUserDetailsDto, file);
+					return "login";
+				}
+
 	@PostMapping("/uploadimage")
-	public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file) throws IOException{
+	public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file) throws IOException {
 		String uploadImage = imageStorageService.uplaodFile(file);
 		return ResponseEntity.status(HttpStatus.OK).body(uploadImage);
-		
-	}
-	@GetMapping("/{filename}")
-	public ResponseEntity<?> downloadImage(@PathVariable String filename){
-		byte[] imageData =imageStorageService.dowmloadFile(filename);
-		return ResponseEntity.status(HttpStatus.OK)
-				.contentType(MediaType.valueOf("image/jpeg"))
-				.body(imageData);
 	}
 
+	@GetMapping("/{filename}")
+	public ResponseEntity<?> downloadImage(@PathVariable String filename) {
+		byte[] imageData = imageStorageService.dowmloadFile(filename);
+		return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf("image/jpeg")).body(imageData);
+	}
 
 }
-
-
-

@@ -62,6 +62,9 @@ public class RtaUserdetails {
 	@Column(name = "usermobileno")
 	private String mobileNo;
 
+	@Column(name = "filepath")
+	private String filepath;
+	
 	public Integer getUserId() {
 		return userId;
 	}

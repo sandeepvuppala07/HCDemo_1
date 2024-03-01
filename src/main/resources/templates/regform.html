@@ -122,11 +122,31 @@ function bpldropdown(){
 			
 			<label>Mobile No</label><strong style="color: red; font-size:70%;">* <br> (For receiving SMS alerts and
 				Activation Key)*</strong>
-				<p style="color: red;" th:if="${#fields.hasErrors('mobileNo')}" class="error" th:errors="*{mobileNo}"></p> 
+				<p style="color: red;" th:if="${#fields.hasErrors('mobileNo')}" class="error" th:errors="*{mobileNo}"></p> 	
 			<input type="text" th:field="*{mobileNo}" placeholder=" Mobile No" class="form-control mb-4 col-4">
+			
+			<div class="col-2">
+				<label>CAPTCHA</label>
+			</div>
+			<div class="col-4">
+				<img th:src="*{'data:realCaptcha/jpg;base64,'+ realCaptcha}"/>
+			</div>
+			
+			<div class="col-2">
+			  <label>ENTER CAPTCHA</label>
+		    </div>
+			<div class="col-4">
+				<input type="hidden" th:field="*{hiddenCaptcha}"/>
+				<input type="text" th:field="*{userCaptcha}" class="form-control"/>
+			</div>
+			
 			<button type="submit" class="btn btn-info col-2">Register</button>
 		</form>
 
+
+        <div th:if="${captchamessage!=null}" class="card-footer bg-info text-white">
+   			<span class="alert alert-danger" th:text="${captchamessage}"></span>
+   		</div>
 		<hr>
 
 		<!--<a th:href="@{/}"> Back to Employee List</a>-->
