@@ -74,6 +74,8 @@ public class RtaUserdetailsDto implements Serializable{
 
 	private String filepath;
 	
+	private String captchaMessage;
+	
 	public String getFilepath() {
 		return filepath;
 	}
@@ -233,6 +235,14 @@ public class RtaUserdetailsDto implements Serializable{
 
 	public void setRealCaptcha(String realCaptcha) {
 		this.realCaptcha = realCaptcha;
+	}
+
+	public String getCaptchaMessage() {
+		return captchaMessage;
+	}
+
+	public void setCaptchaMessage(String captchaMessage) {
+		this.captchaMessage = captchaMessage;
 	}
 	
 	

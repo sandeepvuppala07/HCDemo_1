@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import rc.hc.dto.RtaUserdetailsDto;
 import rc.hc.service.ImageStorageService;
@@ -34,29 +35,30 @@ public class AdminController {
 	@Autowired
 	ImageStorageService imageStorageService;
 
-	@Autowired
-	RtaUserdetailsDto rtaUserdetailsDto;
+	/*
+	 * @Autowired RtaUserdetailsDto rtaUserdetailsDto;
+	 */
 
 	@GetMapping("/form")
-	public String registrationForm(Model model,RtaUserdetailsDto rtaUserdetailsDto) {
-		rtaService.captchaService(rtaUserdetailsDto);
-		model.addAttribute("rtaUserDetailsDto", rtaUserdetailsDto);
+	public String registrationForm(Model model,@ModelAttribute("rtaUserDetailsDto") RtaUserdetailsDto rtaUserDetailsDto) {
+		rtaService.captchaService(rtaUserDetailsDto);
+		model.addAttribute("rtaUserDetailsDto", rtaUserDetailsDto);
 		return "regform";
 	}
 
 	@PostMapping("/register")
 	public String saveUser(@Valid @ModelAttribute("rtaUserDetailsDto") RtaUserdetailsDto rtaUserDetailsDto,
 			BindingResult bindingResult, @RequestParam(value = "bplcard", required = false) MultipartFile file,
-			Model model) throws Exception {
+			Model model,RedirectAttributes redirectAttributes) throws Exception {
+		            
 					if (bindingResult.hasErrors()) {
 						bindingResult.getAllErrors().stream().map(msg -> msg.getDefaultMessage()).forEach(System.out::println);
-						model.addAttribute("rtaUserDetailsDto", rtaUserDetailsDto);
+						redirectAttributes.addFlashAttribute("rtaUserDetailsDto", rtaUserDetailsDto);
 						return "redirect:form";
 					}
 					else if(!rtaUserDetailsDto.getUserCaptcha().equals(rtaUserDetailsDto.getHiddenCaptcha())) {
-						rtaService.captchaService(rtaUserDetailsDto);
-						model.addAttribute("rtaUserDetailsDto", rtaUserDetailsDto);
-						model.addAttribute("captchamessage", "Invalid Captcha");
+                        rtaUserDetailsDto.setCaptchaMessage("Invalid Captcha");
+						redirectAttributes.addAttribute("rtaUserDetailsDto", rtaUserDetailsDto);
 						return "redirect:form";
 					}
 					rtaService.saveUser(rtaUserDetailsDto, file);
