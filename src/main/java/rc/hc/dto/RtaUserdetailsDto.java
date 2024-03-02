@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 //import rc.hc.customvalidations.BplConstraint;
 
@@ -23,47 +24,47 @@ public class RtaUserdetailsDto implements Serializable{
 
 	private Integer userId; 
 	
-	@NotNull(message = "Citizen Must not be Empty and NULL")
+	//@NotNull(message = "Citizen Must not be Empty and NULL")
 	private Integer citizen;
 	
-	@NotBlank(message = "User Name Must not be Empty and NULL")
+	//@NotBlank(message = "User Name Must not be Empty and NULL")
 	private String userName ; 
 	
-	@NotBlank(message = "User Name Must not be Empty and NULL")
+	//@NotBlank(message = "User Name Must not be Empty and NULL")
 	private String fatherName;
 	
 	private Integer gender ;
 	
 	
-	@Pattern(regexp = "^[\\/\\\\-_\\+() \\?\\.,=@\"a-zA-Z0-9 ]+$", message = "Address must be valid")
+	//@Pattern(regexp = "^[\\/\\\\-_\\+() \\?\\.,=@\"a-zA-Z0-9 ]+$", message = "Address must be valid")
 	private String address ;
 	
-	@NotNull(message = "State Must not be Empty and NULL")
+	//@NotNull(message = "State Must not be Empty and NULL")
 	private Integer stateId ;
 	
-	@NotNull(message = "District Must not be Empty and NULL")
+	//@NotNull(message = "District Must not be Empty and NULL")
 	private Integer districtId;
 	
-	@NotNull(message = "Pincode Must not be Empty and NULL")
+	//@NotNull(message = "Pincode Must not be Empty and NULL")
 	private Integer pincode;
 	
-	@NotNull(message = "BPL Feild is Mandatory")
+	//@NotNull(message = "BPL Feild is Mandatory")
 	private Integer bpl ; 
 	//@BplConstraint(value = { "" })
 	private String bplNo; 
 	
 	private byte [] bplCard ;
 	
-	@NotNull(message = "Security Question Must not be Empty and NULL")
+	//@NotNull(message = "Security Question Must not be Empty and NULL")
 	private Integer securityQuesId ;
 	
-	@NotBlank(message = "Security Answer Must not be Empty and NULL")
+	//@NotBlank(message = "Security Answer Must not be Empty and NULL")
 	private String securityAns;
 	
-	@Email(message = "Mail Id Must Valid")
+	//@Email(message = "Mail Id Must Valid")
 	private String mailId; 
 	
-	@Pattern(regexp = "^\\d{10}$", message = "Mobile Number is not valid")
+	//@Pattern(regexp = "^\\d{10}$", message = "Mobile Number is not valid")
 	private String mobileNo;
 	
 	private String userCaptcha;
@@ -76,6 +77,16 @@ public class RtaUserdetailsDto implements Serializable{
 	
 	private String captchaMessage;
 	
+	private MultipartFile bplfile;
+	
+	public MultipartFile getBplfile() {
+		return bplfile;
+	}
+
+	public void setBplfile(MultipartFile bplfile) {
+		this.bplfile = bplfile;
+	}
+
 	public String getFilepath() {
 		return filepath;
 	}

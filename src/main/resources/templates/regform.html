@@ -4,9 +4,17 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>User Registration Form</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	</script>
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
+	</script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+	</script>
 </head>
 <style>
 	.error{
@@ -14,28 +22,145 @@
 	}
 </style>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+
 <script type="text/javascript">
             
 function bpldropdown(){
 	var bpltype = document.getElementById("bpldrop");
 	 if (bpltype.value ==1 ){
-         document.getElementById("bplfile").disabled = false;
+         document.getElementById("bplfileid").disabled = false;
          document.getElementById("bplcardno").disabled = false;
       }
       else{
-		   document.getElementById("bplfile").disabled = true;
+		   document.getElementById("bplfileid").disabled = true;
          document.getElementById("bplcardno").disabled = true;
 	  }
 }
-
+    function validateUsername() {
+        let name = $("#userNameId").val(); 
+        //let regex=/^([^0-9]*)$/;
+        if (name.length == "" || hasNumber(name)) { 
+            $("#userCheck").show(); 
+            usernameError = false; 
+            return false; 
+        } else { 
+            $("#userCheck").hide();    
+        } 
+     }
+       function validateFathername() {
+        let name = $("#fatherNameId").val(); 
+        if (name.length == "" || hasNumber(name)) { 
+            $("#fatherNameCheck").show(); 
+            fatherNameError = false; 
+            return false; 
+        } else { 
+            $("#fatherNameCheck").hide();    
+        } 
+     }
+     function hasNumber(str){
+		 return /[0-9]/.test(str);
+	 }
+     
+      // Validate address 
+      
+   function validateAddress(){
+	   const address = document.getElementById("addressId"); 
+       if(address){
+		    address.addEventListener("blur", () => { 
+		        let regex =  
+		        /^[\\/\\\\-_\\+() \\?\\.,=@\"a-zA-Z0-9 ]+$/; 
+		        let addr = address.value;
+		        if (!regex.test(addr)) { 
+		           $("#addressCheck").show(); 
+		            addressError = true; 
+		        } else { 
+		             $("#addressCheck").hide(); 
+		            addressError = false; 
+		        } 
+		    });
+	   }
+   }
+   function validatePincode(){
+	   const pincode = document.getElementById("pincodeId"); 
+	   if(pincode){
+		   pincode.addEventListener("blur", () => { 
+		        let regex = /\d{6}/; 
+		        let pin = pincode.value;
+		        if (!regex.test(pin)) { 
+		           $("#pincodeCheck").show(); 
+		            pinError = true; 
+		        } else { 
+		             $("#pincodeCheck").hide(); 
+		            pinError = false; 
+		        }  
+		    });
+	   }
+   }	   
+     
+  //Validate Email 
+   function validateEmail(){
+	   const email = document.getElementById("emailId");
+	   if(email){
+	       email.addEventListener("blur", () => {
+	        let regex =  
+	        /^([_\-\.0-9a-zA-Z]+)@([_\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/; 
+	        let em = email.value;
+	        if (!regex.test(em)) {
+	            $("#emailCheck").show();
+	            emailError = true; 
+	           } else {
+	            $("#emailCheck").hide();
+	            emailError = false; 
+	           } 
+	       });
+	   }
+   }                                           //^7[89]\d{8}$
+   
+      function validateMobile(){
+	   const mobile = document.getElementById("mobileId");
+	   if(mobile){
+	       mobile.addEventListener("blur", () => {
+	        let regex = /^[6789]\d{9}$/;
+	        let mo = mobile.value;
+	        if (!regex.test(mo)) {
+	            $("#mobileCheck").show();
+	            mobileError = true; 
+	           } else {
+	            $("#mobileCheck").hide();
+	            mobileError = false; 
+	           } 
+	       });
+	   }
+   }
+    
+  $(document).ready(function () { 
+	 bpldropdown();
+	  $("#userCheck").hide(); 
+	  $("#fatherNameCheck").hide(); 
+	  $("#addressCheck").hide();
+	  $("#pincodeCheck").hide();  
+	  let usernameError,fatherNameError = true;
+	   $("#userNameId").keyup(function () {
+        validateUsername(); 
+       });
+       $("#fatherNameId").keyup(function () {
+        validateFathername(); 
+       });
+        validatePincode();
+        validateEmail();
+        validateAddress()
+       $("#emailCheck").hide();
+       $("#mobileCheck").hide();
+       validateMobile();
+   })
 </script>
-<body onload="javascript:bpldropdown()">
+<body>
 	<div class="container">
 		<h1>High Court For State of Telangana</h1>
 		<hr>
 		<h2>User Registration Form For RTA Application</h2>
 
-		<form action="#" th:action="@{/register}" th:object="${rtaUserDetailsDto}" method="POST">
+		<form action="#" th:action="@{/register}" th:object="${rtaUserDetailsDto}"  enctype="multipart/form-data" method="POST">
 <!--			<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
               <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>    
 </div>-->
@@ -45,17 +170,18 @@ function bpldropdown(){
 				<option th:value="0" th:text="No"></option>
 			</select>
 			
-			<label for="userName">Name</label><strong style="color: red;">*</strong><!--th:field="*{userFirstName}"-->
+			<label for="userName">Name</label><strong style="color: red; font-size:70%;">*<br >Note:-Note:- Only alphabets A-Z a-z and special characters . and 'Space' are allowed.</strong>
 			<p style="color: red;" th:if="${#fields.hasErrors('userName')}" class="error" th:errors="*{userName}"></p> 
-			<input type="text" th:field="*{userName}" placeholder="Name" class="form-control mb-4 col-4" >
+			<input type="text" th:field="*{userName}" placeholder="Name" class="form-control mb-4 col-4" id="userNameId">
+			<h5 id="userCheck" style="color: red ; font-size:70%;">**Invalid User Name</h5>
 			
 			
 			  <!--<p th:errors = "*{userName}" th:if="${#fields.hasErrors('userName')}"></p>-->
 			
 			<label>Father's Name</label><strong style="color: red;">*</strong>
 			<p style="color: red;" th:if="${#fields.hasErrors('fatherName')}" class="error" th:errors="*{fatherName}"></p> 
-			<input type="text" th:field="*{fatherName}" placeholder="Father's Name" class="form-control mb-4 col-4">
-			
+			<input type="text" th:field="*{fatherName}" placeholder="Father's Name" class="form-control mb-4 col-4" id="fatherNameId">
+			<h5 id="fatherNameCheck" style="color: red ; font-size:70%;">**Invalid Father's Name</h5>
 			
 			<label>Gender</label>
 			<select th:field="*{gender}" class="form-control mb-4 col-4">
@@ -66,12 +192,13 @@ function bpldropdown(){
 			<label>Address</label><strong style="color: red; font-size:70%;">* <br>Note:- Only alphabets A-Z a-z number
 				0-9 and special characters , . - _ ( ) / @ = ? \ are allowed.</strong>
 				<p style="color: red;" th:if="${#fields.hasErrors('address')}" class="error" th:errors="*{address}"></p> 
-			<input type="text" th:field="*{address}" placeholder="Address" class="form-control mb-4 col-4">
-			
+			<input type="text" th:field="*{address}" placeholder="Address" class="form-control mb-4 col-4" id="addressId">
+			<h5 id="addressCheck" style="color: red ; font-size:70%;">**Invalid Address</h5>
 			
 			<label>State</label><strong style="color: red;">*</strong>
 			<p style="color: red;" th:if="${#fields.hasErrors('stateId')}" class="error" th:errors="*{stateId}"></p> 
 			<select th:field="*{stateId}" class="form-control mb-4 col-4">
+				<option th:value="-1" th:text="'Select State'"></option>
 				<option th:value="1" th:text="'Andhra Pradesh'"></option>
 				<option th:value="0" th:text="Telangana"></option>
 			</select>
@@ -79,13 +206,15 @@ function bpldropdown(){
 			<label>District</label><strong style="color: red;">*</strong>
 			<p style="color: red;" th:if="${#fields.hasErrors('districtId')}" class="error" th:errors="*{districtId}"></p> 
 			<select th:field="*{districtId}" class="form-control mb-4 col-4">
+				<option th:value="-1" th:text="'Select District'"></option>
 				<option th:value="1" th:text="Hyderabad"></option>
 				<option th:value="0" th:text="Secunderabad"></option>
 			</select>
 			
 			<label>Pincode</label><strong style="color: red;">*</strong>
 			<p style="color: red;" th:if="${#fields.hasErrors('pincode')}" class="error" th:errors="*{pincode}"></p> 
-			<input type="text" th:field="*{pincode}" placeholder="Pincode" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{pincode}" placeholder="Pincode" class="form-control mb-4 col-4" id="pincodeId">
+			<h5 id="pincodeCheck" style="color: red ; font-size:70%;">**Invalid Pincode</h5>
 			
 			<label>Is Applicant below proverty line?</label><strong style="color: red;">*</strong>
 			<p style="color: red;" th:if="${#fields.hasErrors('bpl')}" class="error" th:errors="*{bpl}"></p> 
@@ -96,13 +225,15 @@ function bpldropdown(){
 			
 			<label>BPL Card No</label><strong style="color: red;">*</strong>
 			<p style="color: red;" th:if="${#fields.hasErrors('bplNo')}" class="error" th:errors="*{bplNo}"></p> 
-			<input type="text" th:field="*{bplNo}" placeholder="Address" class="form-control mb-4 col-4" id="bplcardno" disabled>
+			<input type="text" th:field="*{bplNo}" placeholder="BPL Card No" class="form-control mb-4 col-4" id="bplcardno" disabled>
 			
 			<label>Scanned copy of BPL card</label><strong style="color: red; font-size:70%;">* <br> (only pdf & jpeg
 				files having size up to 1 MB)</strong>
 				<p style="color: red;" th:if="${#fields.hasErrors('bplCard')}" class="error" th:errors="*{bplCard}"></p> 
-			<input type="file" th:field="*{bplCard}" accept="image/*" placeholder="BPL Card File"
-				class="form-control mb-4 col-4" id="bplfile" disabled="disabled">
+			<input type="file"  accept="image/*" placeholder="BPL Card File"  th:field="*{bplfile}"
+				class="form-control mb-4 col-4" id="bplfileid" disabled="disabled">
+				<!--th:field="*{bplcard}"-->
+				
 				
 			<label>Security Question</label><strong style="color: red;">*</strong>
 			<p style="color: red;" th:if="${#fields.hasErrors('securityQuesId')}" class="error" th:errors="*{securityQuesId}"></p> 
@@ -115,16 +246,18 @@ function bpldropdown(){
 			
 			<label>Security Answer</label><strong style="color: red;">*</strong>
 			<p style="color: red;" th:if="${#fields.hasErrors('securityAns')}" class="error" th:errors="*{securityAns}"></p> 
-			<input type="text" th:field="*{securityAns}" placeholder="Pincode" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{securityAns}" placeholder="Security Answer" class="form-control mb-4 col-4">
 			
 			<label>Email Id</label><strong style="color: red; font-size:70%;">* <br> (to be used as USERNAME)*</strong>
 			<p style="color: red;" th:if="${#fields.hasErrors('mailId')}" class="error" th:errors="*{mailId}"></p> 
-			<input type="text" th:field="*{mailId}" placeholder=" Email" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{mailId}" placeholder=" Email" class="form-control mb-4 col-4" id="emailId">
+			<h5 id="emailCheck" style="color: red ; font-size:70%;">**Invalid EmailId</h5>
 			
 			<label>Mobile No</label><strong style="color: red; font-size:70%;">* <br> (For receiving SMS alerts and
 				Activation Key)*</strong>
 				<p style="color: red;" th:if="${#fields.hasErrors('mobileNo')}" class="error" th:errors="*{mobileNo}"></p> 	
-			<input type="text" th:field="*{mobileNo}" placeholder=" Mobile No" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{mobileNo}" placeholder=" Mobile No" class="form-control mb-4 col-4" id="mobileId">
+			<h5 id="mobileCheck" style="color: red ; font-size:70%;">**Invalid Mobile Number</h5>
 			
 			<div class="col-2">
 				<label>CAPTCHA</label>
@@ -142,12 +275,13 @@ function bpldropdown(){
 			</div>
 			
 			<button type="submit" class="btn btn-info col-2">Register</button>
+			
+			  
+   			<span><strong style="color: red; font-size:70%;" th:text="${rtaUserDetailsDto.captchaMessage}" ></span>
 		</form>
 
 
-        <div th:if="${rtaUserDetailsDto.captchaMessage!=null}" class="card-footer bg-info text-white">
-   			<span class="alert alert-danger" th:text="${rtaUserDetailsDto.captchaMessage}"></span>
-   		</div>
+      
 		<hr>
 
 		<!--<a th:href="@{/}"> Back to Employee List</a>-->

@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import rc.hc.dto.RtaUserdetailsDto;
@@ -45,25 +42,19 @@ public class AdminController {
 		model.addAttribute("rtaUserDetailsDto", rtaUserDetailsDto);
 		return "regform";
 	}
+	
+	@PostMapping(path = "/register", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+	public String saveUser(@ModelAttribute("rtaUserDetailsDto") RtaUserdetailsDto rtaUserDetailsDto,
+			RedirectAttributes redirectAttributes) throws Exception {
 
-	@PostMapping("/register")
-	public String saveUser(@Valid @ModelAttribute("rtaUserDetailsDto") RtaUserdetailsDto rtaUserDetailsDto,
-			BindingResult bindingResult, @RequestParam(value = "bplcard", required = false) MultipartFile file,
-			Model model,RedirectAttributes redirectAttributes) throws Exception {
-		            
-					if (bindingResult.hasErrors()) {
-						bindingResult.getAllErrors().stream().map(msg -> msg.getDefaultMessage()).forEach(System.out::println);
-						redirectAttributes.addFlashAttribute("rtaUserDetailsDto", rtaUserDetailsDto);
-						return "redirect:form";
-					}
-					else if(!rtaUserDetailsDto.getUserCaptcha().equals(rtaUserDetailsDto.getHiddenCaptcha())) {
-                        rtaUserDetailsDto.setCaptchaMessage("Invalid Captcha");
-						redirectAttributes.addAttribute("rtaUserDetailsDto", rtaUserDetailsDto);
-						return "redirect:form";
-					}
-					rtaService.saveUser(rtaUserDetailsDto, file);
-					return "login";
-				}
+		if (!rtaUserDetailsDto.getUserCaptcha().equals(rtaUserDetailsDto.getHiddenCaptcha())) {
+			rtaUserDetailsDto.setCaptchaMessage("Invalid Captcha");
+			redirectAttributes.addFlashAttribute("rtaUserDetailsDto", rtaUserDetailsDto);
+			return "redirect:form";
+		}
+		rtaService.saveUser(rtaUserDetailsDto);
+		return "login";
+	}
 
 	@PostMapping("/uploadimage")
 	public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file) throws IOException {

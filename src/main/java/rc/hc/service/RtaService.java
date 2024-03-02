@@ -7,6 +7,6 @@ import rc.hc.model.RtaUserdetails;
 
 public interface RtaService {
 	
-	public RtaUserdetails saveUser( RtaUserdetailsDto rtaUserDetailsdto,MultipartFile file);
+	public RtaUserdetails saveUser( RtaUserdetailsDto rtaUserDetailsdto);
 	public void captchaService(RtaUserdetailsDto rtaUserdetailsDto);
 }

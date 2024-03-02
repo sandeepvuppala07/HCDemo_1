@@ -27,16 +27,16 @@ public class RtaSeviceImpl implements RtaService {
 	@Autowired
 	private RtaUserdetailsDto rtaUserdetailsDto;
 
-	String folderpath=System.getProperty("user.dir")+File.separator+"src"+File.separator+"main"+File.separator+"resources"+"static";
+	String folderpath=System.getProperty("user.dir")+File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"static"+File.separator+"bpl_storarage"+File.separator;///HCDemo_1/src/main/resources/static/bpl_storarage
 	String filepath;
 	@Override
-	public RtaUserdetails saveUser(RtaUserdetailsDto rtaUserDetailsdto,MultipartFile file) {
-		if(file!=null) {
+	public RtaUserdetails saveUser(RtaUserdetailsDto rtaUserDetailsdto) {
+		if(rtaUserDetailsdto.getBplfile()!=null) {
 			try {
 				//rtaUserDetailsdto.setBplCard(ImageUtil.compressImage(file.getBytes()));
-				filepath = folderpath+file.getOriginalFilename();
+				filepath = folderpath+rtaUserDetailsdto.getBplfile().getOriginalFilename();
 				rtaUserDetailsdto.setFilepath(filepath);
-				file.transferTo(new File(filepath));
+				rtaUserDetailsdto.getBplfile().transferTo(new File(filepath));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

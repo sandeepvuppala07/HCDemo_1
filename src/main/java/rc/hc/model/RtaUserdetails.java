@@ -193,4 +193,12 @@ public class RtaUserdetails {
 		this.mobileNo = mobileNo;
 	}
 
+	public String getFilepath() {
+		return filepath;
+	}
+
+	public void setFilepath(String filepath) {
+		this.filepath = filepath;
+	}
+
 }
