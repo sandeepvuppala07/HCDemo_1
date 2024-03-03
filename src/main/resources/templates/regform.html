@@ -24,7 +24,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 
 <script type="text/javascript">
-            
+
+var usernameError, fatherNameError, addressError, pinError, mobileError;
 function bpldropdown(){
 	var bpltype = document.getElementById("bpldrop");
 	 if (bpltype.value ==1 ){
@@ -41,20 +42,22 @@ function bpldropdown(){
         //let regex=/^([^0-9]*)$/;
         if (name.length == "" || hasNumber(name)) { 
             $("#userCheck").show(); 
-            usernameError = false; 
+            usernameError = true; 
             return false; 
         } else { 
-            $("#userCheck").hide();    
+            $("#userCheck").hide(); 
+            usernameError = false;
         } 
      }
        function validateFathername() {
         let name = $("#fatherNameId").val(); 
         if (name.length == "" || hasNumber(name)) { 
             $("#fatherNameCheck").show(); 
-            fatherNameError = false; 
+            fatherNameError = true; 
             return false; 
         } else { 
-            $("#fatherNameCheck").hide();    
+            $("#fatherNameCheck").hide(); 
+            fatherNameError = false;
         } 
      }
      function hasNumber(str){
@@ -95,7 +98,7 @@ function bpldropdown(){
 		        }  
 		    });
 	   }
-   }	   
+   }
      
   //Validate Email 
    function validateEmail(){
@@ -132,6 +135,34 @@ function bpldropdown(){
 	       });
 	   }
    }
+   
+   function validateForm(){
+	   validateMobile();
+	   validateEmail();
+	   validateAddress();
+	   validateFathername();
+	   validateUsername()
+	   
+	   if ( 
+			   usernameError == false && 
+			   fatherNameError == false && 
+			   addressError == false && 
+			   pinError == false &&
+			   mobileError == false
+	        ){
+		   saveForm()
+	   }
+	   
+   }
+   function saveForm(){
+	    $.ajax({
+	        method: "POST",
+	        url: "//register",
+	        data: $('#registerFormId').serialize(),
+	      
+	    });
+	}
+   
     
   $(document).ready(function () { 
 	 bpldropdown();
@@ -152,6 +183,10 @@ function bpldropdown(){
        $("#emailCheck").hide();
        $("#mobileCheck").hide();
        validateMobile();
+       
+       $("#registerId").click(function(){
+    	   validateForm();
+       })
    })
 </script>
 <body>
@@ -160,7 +195,7 @@ function bpldropdown(){
 		<hr>
 		<h2>User Registration Form For RTA Application</h2>
 
-		<form action="#" th:action="@{/register}" th:object="${rtaUserDetailsDto}"  enctype="multipart/form-data" method="POST">
+		<form action="#" id="registerFormId" th:object="${rtaUserDetailsDto}"  enctype="multipart/form-data" method="POST">
 <!--			<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
               <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>    
 </div>-->
@@ -197,7 +232,8 @@ function bpldropdown(){
 			
 			<label>State</label><strong style="color: red;">*</strong>
 			<p style="color: red;" th:if="${#fields.hasErrors('stateId')}" class="error" th:errors="*{stateId}"></p> 
-			<select th:field="*{stateId}" class="form-control mb-4 col-4">
+			<select th:field="*{stateId}" class="form-control mb-4 col-4" id="stateselid">
+			<h5 id="stateCheck" style="color: red ; font-size:70%;">**Please Se</h5>
 				<option th:value="-1" th:text="'Select State'"></option>
 				<option th:value="1" th:text="'Andhra Pradesh'"></option>
 				<option th:value="0" th:text="Telangana"></option>
@@ -205,7 +241,7 @@ function bpldropdown(){
 			
 			<label>District</label><strong style="color: red;">*</strong>
 			<p style="color: red;" th:if="${#fields.hasErrors('districtId')}" class="error" th:errors="*{districtId}"></p> 
-			<select th:field="*{districtId}" class="form-control mb-4 col-4">
+			<select th:field="*{districtId}" class="form-control mb-4 col-4" id="distselid">
 				<option th:value="-1" th:text="'Select District'"></option>
 				<option th:value="1" th:text="Hyderabad"></option>
 				<option th:value="0" th:text="Secunderabad"></option>
@@ -274,7 +310,7 @@ function bpldropdown(){
 				<input type="text" th:field="*{userCaptcha}" class="form-control"/>
 			</div>
 			
-			<button type="submit" class="btn btn-info col-2">Register</button>
+			<button type="submit" class="btn btn-info col-2" id="registerId">Register</button>
 			
 			  
    			<span><strong style="color: red; font-size:70%;" th:text="${rtaUserDetailsDto.captchaMessage}" ></span>
