@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 
-  @Controller public class FormController {
+  @Controller
+  public class FormController {
   
 		/*
 		 * @GetMapping("/form") public ModelAndView registrationForm(){ ModelAndView
@@ -14,10 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 		 */
 	  
 	  @GetMapping("/formtest")
-		public ModelAndView formtest(){
-			ModelAndView modelAndView = new ModelAndView();
-			modelAndView.setViewName("test");
-			return modelAndView;
+		public String formtest(){
+			
+		 return "RtiPages/rti_register1";
 		}
   
   }

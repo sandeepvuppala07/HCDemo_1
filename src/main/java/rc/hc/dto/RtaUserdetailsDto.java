@@ -67,15 +67,23 @@ public class RtaUserdetailsDto implements Serializable{
 	//@Pattern(regexp = "^\\d{10}$", message = "Mobile Number is not valid")
 	private String mobileNo;
 	
-	private String userCaptcha;
+	private String userCaptcha_1;
 	
-	private String hiddenCaptcha;
+	private String hiddenCaptcha_1;
 
-	private String realCaptcha;
+	private String realCaptcha_1;
 
+	private String userCaptcha_2;
+	
+	private String hiddenCaptcha_2;
+
+	private String realCaptcha_2;
+	
 	private String filepath;
 	
-	private String captchaMessage;
+	private String captchaMessage_1;
+	
+	private String captchaMessage_2;
 	
 	private MultipartFile bplfile;
 	
@@ -224,38 +232,69 @@ public class RtaUserdetailsDto implements Serializable{
 		this.mobileNo = mobileNo;
 	}
 
-	public String getUserCaptcha() {
-		return userCaptcha;
+	public String getUserCaptcha_1() {
+		return userCaptcha_1;
 	}
 
-	public void setUserCaptcha(String userCaptcha) {
-		this.userCaptcha = userCaptcha;
+	public void setUserCaptcha_1(String userCaptcha_1) {
+		this.userCaptcha_1 = userCaptcha_1;
 	}
 
-	public String getHiddenCaptcha() {
-		return hiddenCaptcha;
+	public String getHiddenCaptcha_1() {
+		return hiddenCaptcha_1;
 	}
 
-	public void setHiddenCaptcha(String hiddenCaptcha) {
-		this.hiddenCaptcha = hiddenCaptcha;
+	public void setHiddenCaptcha_1(String hiddenCaptcha_1) {
+		this.hiddenCaptcha_1 = hiddenCaptcha_1;
 	}
 
-	public String getRealCaptcha() {
-		return realCaptcha;
+	public String getRealCaptcha_1() {
+		return realCaptcha_1;
 	}
 
-	public void setRealCaptcha(String realCaptcha) {
-		this.realCaptcha = realCaptcha;
+	public void setRealCaptcha_1(String realCaptcha_1) {
+		this.realCaptcha_1 = realCaptcha_1;
 	}
 
-	public String getCaptchaMessage() {
-		return captchaMessage;
+	public String getUserCaptcha_2() {
+		return userCaptcha_2;
 	}
 
-	public void setCaptchaMessage(String captchaMessage) {
-		this.captchaMessage = captchaMessage;
+	public void setUserCaptcha_2(String userCaptcha_2) {
+		this.userCaptcha_2 = userCaptcha_2;
 	}
-	
+
+	public String getHiddenCaptcha_2() {
+		return hiddenCaptcha_2;
+	}
+
+	public void setHiddenCaptcha_2(String hiddenCaptcha_2) {
+		this.hiddenCaptcha_2 = hiddenCaptcha_2;
+	}
+
+	public String getRealCaptcha_2() {
+		return realCaptcha_2;
+	}
+
+	public void setRealCaptcha_2(String realCaptcha_2) {
+		this.realCaptcha_2 = realCaptcha_2;
+	}
+
+	public String getCaptchaMessage_1() {
+		return captchaMessage_1;
+	}
+
+	public void setCaptchaMessage_1(String captchaMessage_1) {
+		this.captchaMessage_1 = captchaMessage_1;
+	}
+
+	public String getCaptchaMessage_2() {
+		return captchaMessage_2;
+	}
+
+	public void setCaptchaMessage_2(String captchaMessage_2) {
+		this.captchaMessage_2 = captchaMessage_2;
+	}
 	
 
 }

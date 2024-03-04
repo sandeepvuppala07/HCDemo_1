@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{rti-basepackages::Layout(~{::section})}">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Telangana Highcourt </title>
+
+    <!-- Mobile Specific Metas -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name=author content="">
+    <meta name=generator content="">
+    <?php include 'includes/header-links-1.php'; ?>
+
+</head>
+<style>
+    body {
+        background: #fff;
+        color: #020D26;
+        font-family: "Montserrat";
+    }
+</style>
+
+<body>
+<section class="pb-3 pt-3 Tenders">
+<div class="body-inner">
+    <header th:replace="~{includes/rti-header :: header}"></header>
+    <section class="py-4 p-3 Judges ">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10 ">
+                    <div class="edits p-5">
+                        <div class="three mb-5">
+                            <h3>Edit Profile</h3>
+                        </div>
+                        <form>
+                            <div class="row">
+                                <div class="col-lg-12 mb-4">
+                                    <label>Address*</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                              placeholder="Enter Address"></textarea>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <label> State*</label>
+                                    <select class="form-control" id="exampleFormControlSelect1">
+                                        <option>Select State</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <label>District*</label>
+                                    <select class="form-control" id="exampleFormControlSelect1">
+                                        <option>Select District</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <label>Pincode*</label>
+                                    <input type="text" class="form-control" id="" placeholder="Pincode">
+
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <label>Mobile Number*</label>
+                                    <input type="text" class="form-control" id="" placeholder="Pincode">
+
+                                </div>
+                                <div class="col-lg-12 text-center  mt-4">
+                                    <a href="" type="btn" class=" btn btn-info w-50 mb-1">Update</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+</section>
+</body>
+
+</html>

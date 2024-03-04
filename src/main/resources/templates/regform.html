@@ -141,27 +141,22 @@ function bpldropdown(){
 	   validateEmail();
 	   validateAddress();
 	   validateFathername();
-	   validateUsername()
+	   validateUsername();
+	   validatePincode();
 	   
 	   if ( 
 			   usernameError == false && 
 			   fatherNameError == false && 
 			   addressError == false && 
 			   pinError == false &&
-			   mobileError == false
+			   mobileError == false &&
+			   emailError ==false
 	        ){
-		   saveForm()
+		   return true;
 	   }
 	   
    }
-   function saveForm(){
-	    $.ajax({
-	        method: "POST",
-	        url: "//register",
-	        data: $('#registerFormId').serialize(),
-	      
-	    });
-	}
+  
    
     
   $(document).ready(function () { 
@@ -184,9 +179,14 @@ function bpldropdown(){
        $("#mobileCheck").hide();
        validateMobile();
        
-       $("#registerId").click(function(){
-    	   validateForm();
-       })
+       $('#registerFormId').submit(function (event) {
+           // Prevent form submission
+           event.preventDefault();
+           // If all validations pass, submit the form
+           if (validateForm()) {
+               this.submit();
+           }
+       });
    })
 </script>
 <body>
@@ -195,7 +195,7 @@ function bpldropdown(){
 		<hr>
 		<h2>User Registration Form For RTA Application</h2>
 
-		<form action="#" id="registerFormId" th:object="${rtaUserDetailsDto}"  enctype="multipart/form-data" method="POST">
+		<form th:action="@{/register}" id="registerFormId" th:object="${rtaUserDetailsDto}"  enctype="multipart/form-data" method="POST">
 <!--			<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
               <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>    
 </div>-->

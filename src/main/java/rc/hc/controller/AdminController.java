@@ -40,15 +40,15 @@ public class AdminController {
 	public String registrationForm(Model model,@ModelAttribute("rtaUserDetailsDto") RtaUserdetailsDto rtaUserDetailsDto) {
 		rtaService.captchaService(rtaUserDetailsDto);
 		model.addAttribute("rtaUserDetailsDto", rtaUserDetailsDto);
-		return "regform";
+		return "RtiPages/rti_register";
 	}
 	
-	@PostMapping(path = "/register", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+	@PostMapping(path = "/register", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE,MediaType.TEXT_PLAIN_VALUE })
 	public String saveUser(@ModelAttribute("rtaUserDetailsDto") RtaUserdetailsDto rtaUserDetailsDto,
 			RedirectAttributes redirectAttributes) throws Exception {
 
-		if (!rtaUserDetailsDto.getUserCaptcha().equals(rtaUserDetailsDto.getHiddenCaptcha())) {
-			rtaUserDetailsDto.setCaptchaMessage("Invalid Captcha");
+		if (!rtaUserDetailsDto.getUserCaptcha_1().equals(rtaUserDetailsDto.getHiddenCaptcha_1())) {
+			rtaUserDetailsDto.setCaptchaMessage_1("Invalid Captcha");
 			redirectAttributes.addFlashAttribute("rtaUserDetailsDto", rtaUserDetailsDto);
 			return "redirect:form";
 		}
@@ -67,5 +67,5 @@ public class AdminController {
 		byte[] imageData = imageStorageService.dowmloadFile(filename);
 		return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf("image/jpeg")).body(imageData);
 	}
-
+    
 }
