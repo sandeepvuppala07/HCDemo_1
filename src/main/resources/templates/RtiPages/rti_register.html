@@ -23,7 +23,19 @@
     <link rel="stylesheet" th:href="@{/assets/plugins/slick/slick.css}">
     <link rel="stylesheet" th:href="@{/assets/plugins/slick/slick-theme.css}">
     <link rel="stylesheet" th:href="@{/assets/css/rticss.css}">
-
+    	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	</script>
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
+	</script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+	</script>
+    <script th:src="@{/assets/js/rti_register.js}"></script>
+    
 <!--    <link rel="icon" type="image/png" th:href="@{/assets/images/favicon.png}">-->
 </head>
 
@@ -46,22 +58,24 @@
     </section>
     <section class="pt-4 Online pb-4 regs">
         <div class="container-fluid bg-white pt-4 p-4">
-            <form th:action="@{/register}" th:object="${rtaUserDetailsDto}" enctype="multipart/form-data" method="POST">
+            <form th:action="@{/register}" th:object="${rtaUserDetailsDto}" id="registerFormId" enctype="multipart/form-data" method="POST">
                 <div class="row">
                     <div class="col-lg-4 mb-3">
-                        <label for="isCitizenId">Are you a Citizen of India? *</label>
+                        <label for="isCitizenId">Are you a Citizen of India?<b class="warn">*</b></label>
                         <select th:field="*{citizen}" class="form-control" id="isCitizenId">
                             <option th:value="1" th:text="Yes" selected ></option>
                             <option th:value="2" th:text="No" >No</option>
                         </select>
                     </div>
                     <div class="col-lg-4 mb-3">
-                        <label for="userNameId" >Name*</label>
+                        <label for="userNameId" >Name<b class="warn">*  Note:- Only alphabets A-Z a-z and special characters . and 'Space' are allowed.</b></label>
                         <input type="text" th:field="*{userName}" class="form-control" placeholder="Enter Name" id="userNameId">
+                        <span id="userCheck" style="color: red ; font-size:90%;">**Invalid User Name</span>
                     </div>
                     <div class="col-lg-4 mb-3">
-                        <label for="fatherNameId">Father's Name*</label>
+                        <label for="fatherNameId">Father's Name<b class="warn">*  Note:- Only alphabets A-Z a-z and special characters . and 'Space' are allowed.</b></label>
                         <input type="text" th:field="*{fatherName}" class="form-control" placeholder="Enter Father's Name" id="fatherNameId">
+                        <span id="fatherNameCheck" style="color: red ; font-size:90%;">**Invalid Father Name</span>
                     </div>
                     <div class="col-lg-4 mb-3">
                         <label  for="genderId">Gender</label>
@@ -71,11 +85,12 @@
                         </select>
                     </div>
                     <div class="col-lg-4 mb-3">
-                        <label for="addressId" >Address</label>
+                        <label for="addressId" >Address<b class="warn">*  Note:- Only alphabets A-Z a-z number 0-9 and special characters / , \ . - _ ( ) # are allowed.</b></label>
                         <input type="text" th:field="*{address}" class="form-control" placeholder="Address" id="addressId">
+                        <span id="addressCheck" style="color: red ; font-size:90%;">**Invalid Address</span>
                     </div>
                     <div class="col-lg-2 mb-3">
-                        <label for="stateselid">State</label>
+                        <label for="stateselid">State<b class="warn">*</b></label>
                         <select th:field="*{stateId}" class="form-control" id="stateselid">
                             <option th:value="-1" selected>select</option>
                             <option th:value="1" th:text="Telangana" ></option>
@@ -83,7 +98,7 @@
                         </select>
                     </div>
                     <div class="col-lg-2 mb-3">
-                        <label for="distselid">District*</label>
+                        <label for="distselid">District<b class="warn">*</b></label>
                         <select id="distselid" th:field="*{districtId}" class="form-control">
                             <option th:value="-1"  selected>Select</option>
                             <option  th:value="1" th:text="Guntur" ></option>
@@ -91,79 +106,82 @@
                         </select>
                     </div>
                     <div class="col-lg-4 mb-3">
-                        <label  for="pincodeId">Pincode*</label>
+                        <label  for="pincodeId">PinCode<b class="warn">*</b></label>
                         <input type="text" class="form-control" placeholder="Pincode" th:field="*{pincode}"  id="pincodeId">
+                        <span id="pincodeCheck" style="color: red ; font-size:90%;">**Invalid PinCode</span>
                     </div>
                     <div class="col-lg-4 mb-3">
-                        <label for="bpldrop">Is the Applicant Below Poverty Line ?:*</label>
+                        <label for="bpldrop">Is the Applicant Below Poverty Line ?:<b class="warn">*</b></label>
                         <select id="bpldrop" class="form-control" th:field="*{bpl}">
-                            <option selected th:value="1" th:text="No" ></option>
-                            <option th:value="2" th:text="Yes" ></option>
+                            <option selected th:value="0" th:text="No" ></option>
+                            <option th:value="1" th:text="Yes" ></option>
                         </select>
                     </div>
                     <div class="col-lg-4 mb-3">
-                        <label for="bplcardno">BPL Card No*</label>
-                        <input type="text" class="form-control" placeholder="BPL Card No" th:field="*{bplNo}" id="bplcardno" disabled>
+                        <label for="bplcardnoId">BPL Card No<b class="warn">*</b></label>
+                        <input type="text" class="form-control" placeholder="BPL Card No" th:field="*{bplNo}" id="bplcardnoId" />
                     </div>
                     <div class="col-lg-4 mb-3">
-                        <label  for="bplfileid">Scanned copy of BPL Card </label> <span>(only pdf & jpeg files having size up to 1
-                            MB)</span><br>
+                        <label  for="bplfileid">Scanned copy of BPL Card <b class="warn">* (only pdf & jpeg files having size up to 1MB)</b></label>
                         <div class="upload">
                             <button class="upload__btn"  onclick="alert('button')"><i class="fas fa-plus"></i>
                                 Upload a file</button>
-                            <input class="upload__input" type="file" name="myfile" accept="image/*"   th:field="*{bplfile}" id="bplfileid" "/>
+                            <input class="upload__input" type="file" name="myfile" accept="image/*"   th:field="*{bplfile}" id="bplfileid" />
+                             <span id="bplFileCheck" style="color: red ; font-size:90%;">**Please Upload BPL file</span>
                         </div>
                     </div>
-                    <div class="col-lg-4 mb-3">
-                        <label for="securityQuestionId">Security Question*</label> 
+                    <div class="col-lg-4 mb-3">̥
+                        <label for="securityQuestionId">Security Question<b class="warn">*</b></label>
                         <select id="securityQuestionId" class="form-control" th:field="*{securityQuesId}">
                             <option selected th:value="-1" >Select</option>
                             <option th:value="1">What is your Mother's maiden name?</option>
 							<option th:value="2">What is the name of your first School?</option>
-							<option th:value="3">What is the name of your favourite book?</option>
+							<option th:value="3">What is the name of your favorite book?</option>
 							<option th:value="4">Which city were you born in?</option>
                         </select>
                     </div>
                     <div class="col-lg-4 mb-3">
-                        <label for="securityAnsId">Security Answer*</label>
+                        <label for="securityAnsId">Security Answer<b class="warn">*</b></label>
                         <input type="text" class="form-control" placeholder="Security Answer"  th:field="*{securityAns}" id="securityAnsId" >
                     </div>
                     <div class="col-lg-4 mb-3">
-                        <label for="emailId">Email ID</label> <span>(to be used as USERNAME)*</span>
+                        <label for="emailId">Email ID <b class="warn">*  (to be used as USERNAME)*</b></label>
                         <input type="text" class="form-control" placeholder="Email ID" th:field="*{mailId}" id="emailId">
+                        <span id="emailCheck" style="color: red ; font-size:90%;">**Invalid Email</span>
                     </div>
                     <div class="col-lg-4 mb-3">
-                        <label for="mobileId">Mobile No</label> <span>(For receiving SMS alerts and Activation Key)*</span>
+                        <label for="mobileId">Mobile No <b class="warn">* (For receiving SMS alerts and Activation Key)*</b></label>
                         <input type="text" class="form-control" placeholder="Email Mobile No" id="mobileId" th:field="*{mobileNo}">
+                        <span id="mobileCheck" style="color: red ; font-size:90%;">**Invalid Mobile Number</span>
                     </div>
                     <div class="col-lg-2 mb-3">
-                        <label>Validation code</label>
+                        <label for="captch1Id" >Validation code<b class="warn">*</b></label>
                         <img th:src="*{'data:realCaptcha_1/jpg;base64,'+ realCaptcha_1}"  />            
                     </div>
                     <div class="col-lg-2 mb-3">
-                        <label>Enter the Validation code</label>
+                        <label for="captch1Id">Enter the Validation code</label>
                         <input type="hidden" th:field="*{hiddenCaptcha_1}"/>
-                        <input type="text" class="form-control" placeholder="Validation Code" th:field="*{userCaptcha_1}">
+                        <input type="text" class="form-control" placeholder="Validation Code" th:field="*{userCaptcha_1}" id="captch1Id">
                     </div>
                     <div class="col-lg-4 mb-3">
                         <label></label>
                         <button type="button" class="btn btn-outline-secondary w-100 mt-2">Generate OTP</button>
                     </div>
                     <div class="col-lg-4 mb-3">
-                        <label>Please Enter OTP sent on your mobile no for requestId </label>
-                        <input type="text" class="form-control" placeholder="Please Enter OTP ">
+                        <label for="otpId">Please Enter OTP sent on your mobile no for requestId </label>
+                        <input type="text" class="form-control" placeholder="Please Enter OTP " id="otpId">
                     </div>
                     <div class="col-lg-2 mb-3">
-                        <label>Validation code</label>
-                        <img th:src="*{'data:realCaptcha_2/jpg;base64,'+ realCaptcha_2}"  /> 
+                        <label for="captch2Id" >Validation code<b class="warn">*</b></label>
+                        <img  th:src="*{'data:realCaptcha_2/jpg;base64,'+ realCaptcha_2}"  /> 
                     </div>
                     <div class="col-lg-2 mb-3">
-                        <label>Enter the Validation code</label>
+                        <label for="captch2Id" >Enter the Validation code</label>
                          <input type="hidden" th:field="*{hiddenCaptcha_2}"/>
-                        <input type="text" class="form-control" placeholder="Validation Code" th:field="*{userCaptcha_2}">
+                        <input type="text" class="form-control" placeholder="Validation Code" th:field="*{userCaptcha_2}" id="captch2Id">
                     </div>
                     <div class="col-lg-12 text-center reg mt-4">
-                        <a href="" type="btn" class=" btn btn-info  mb-1">Register</a>
+                        <button type="submit" class="btn btn-info col-2" id="registerId">Register</button>
                     </div>
                 </div>
             </form>

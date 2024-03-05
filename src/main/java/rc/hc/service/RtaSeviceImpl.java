@@ -46,12 +46,12 @@ public class RtaSeviceImpl implements RtaService {
 	}
 	
 	public void captchaService(RtaUserdetailsDto rtaUserdetailsDto) {
-		Captcha captcha1 = CaptchaUtils.createCaptcha(260,45);
+		Captcha captcha1 = CaptchaUtils.createCaptcha(200,45);
 		rtaUserdetailsDto.setHiddenCaptcha_1(captcha1.getAnswer());
 		rtaUserdetailsDto.setUserCaptcha_1(""); // value entered by the User
 		rtaUserdetailsDto.setRealCaptcha_1(CaptchaUtils.encodeCaptcha(captcha1));
 		
-		Captcha captcha2 = CaptchaUtils.createCaptcha(260,45);
+		Captcha captcha2 = CaptchaUtils.createCaptcha(200,45);
 		rtaUserdetailsDto.setHiddenCaptcha_2(captcha2.getAnswer());
 		rtaUserdetailsDto.setUserCaptcha_2(""); // value entered by the User
 		rtaUserdetailsDto.setRealCaptcha_2(CaptchaUtils.encodeCaptcha(captcha2));

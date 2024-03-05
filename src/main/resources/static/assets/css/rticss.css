@@ -405,3 +405,9 @@ ul.navbar-nav>li>a {
         font-size: 14px;
     }
 }
+
+label .warn{
+	display: inline;
+	color: red;
+	font-size: 12px;
+}
