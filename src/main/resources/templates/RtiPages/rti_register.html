@@ -162,6 +162,7 @@
                         <label for="captch1Id">Enter the Validation code</label>
                         <input type="hidden" th:field="*{hiddenCaptcha_1}"/>
                         <input type="text" class="form-control" placeholder="Validation Code" th:field="*{userCaptcha_1}" id="captch1Id">
+                         <span><strong style="color: red; font-size:70%;" th:text="${rtaUserDetailsDto.captchaMessage_1}" ></strong></span>
                     </div>
                     <div class="col-lg-4 mb-3">
                         <label></label>
@@ -184,6 +185,7 @@
                         <button type="submit" class="btn btn-info col-2" id="registerId">Register</button>
                     </div>
                 </div>
+               
             </form>
 
         </div>

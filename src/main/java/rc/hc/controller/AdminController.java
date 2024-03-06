@@ -36,7 +36,7 @@ public class AdminController {
 	 * @Autowired RtaUserdetailsDto rtaUserdetailsDto;
 	 */
 
-	@GetMapping("/form")
+	@GetMapping(path = "/form", produces = { MediaType.MULTIPART_FORM_DATA_VALUE,MediaType.TEXT_PLAIN_VALUE })
 	public String registrationForm(Model model,@ModelAttribute("rtaUserDetailsDto") RtaUserdetailsDto rtaUserDetailsDto) {
 		rtaService.captchaService(rtaUserDetailsDto);
 		model.addAttribute("rtaUserDetailsDto", rtaUserDetailsDto);

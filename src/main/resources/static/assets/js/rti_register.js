@@ -52,6 +52,7 @@ function bpldropdown(){
    function validateAddress(){
 	   const address = document.getElementById("addressId"); 
        if(address){
+		   addressError = false;
 		    address.addEventListener("blur", () => { 
 		        let regex =  
 		        /^[-\\/\\\\_\\() \\?\\.,#"a-zA-Z0-9 ]+$/; 
@@ -71,6 +72,7 @@ function bpldropdown(){
    function validatePincode(){
 	   const pincode = document.getElementById("pincodeId"); 
 	   if(pincode){
+		   pinError = false;
 		   pincode.addEventListener("blur", () => { 
 		        let regex = /^\d{6}$/; 
 		        let pin = pincode.value;
@@ -92,6 +94,7 @@ function bpldropdown(){
    function validateEmail(){
 	   const email = document.getElementById("emailId");
 	   if(email){
+		   emailError = false;
 	       email.addEventListener("blur", () => {
 	        let regex =  
 	        /^([_\-\.0-9a-zA-Z]+)@([_\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/; 
@@ -112,6 +115,7 @@ function bpldropdown(){
       function validateMobile(){
 	   const mobile = document.getElementById("mobileId");
 	   if(mobile){
+		    mobileError = false;
 	       mobile.addEventListener("blur", () => {
 	        let regex = /^[6789]\d{9}$/;
 	        let mo = mobile.value;
