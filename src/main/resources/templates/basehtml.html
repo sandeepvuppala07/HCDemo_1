@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="Layout(sectionContent)">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Telangana Highcourt </title>
+
+    <!-- Mobile Specific Metas -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name=author content="Themefisher">
+    <meta name=generator content="">
+
+    <link th:replace="~{includes/header-links :: header}">
+
+</head>
+
+<body>
+<div class="body-inner">
+    <!-- TOP BAR SECTION START -->
+    <div th:replace="~{includes/top-bar :: header}"></div>
+    <!-- TOP BAR SECTION END -->
+
+
+    <!-- HEADER SECTION START -->
+    <header th:replace="~{includes/header :: header}"></header>
+    <!-- HEADER SECTION END -->
+
+
+    <!-- SLider Section Start -->
+
+    <div th:replace="${sectionContent}"></div>
+    <!-- SLider Section end -->
+
+
+    <!-- © Copyright SECTION START -->
+    <div th:replace="~{includes/footer :: footer}"></div>
+    <!-- © Copyright END -->
+</div>
+</body>
+<!-- Bootstrap jQuery and js-->
+<script th:replace="~{includes/footer-links :: script}"></script>
+<!-- Bootstrap jQuery and js-->
+<script th:inline="javascript">
+    $(function () {
+      $(".demo1").bootstrapNews({
+        newsPerPage: 3,
+        autoplay: true,
+        pauseOnHover: true,
+        direction: 'up',
+        newsTickerInterval: 4000,
+        onToDo: function () {
+          //console.log(this);
+        }
+      });
+
+      $(".demo2").bootstrapNews({
+        newsPerPage: 4,
+        autoplay: true,
+        pauseOnHover: true,
+        navigation: false,
+        direction: 'down',
+        newsTickerInterval: 2500,
+        onToDo: function () {
+          //console.log(this);
+        }
+      });
+
+      $("#demo3").bootstrapNews({
+        newsPerPage: 3,
+        autoplay: false,
+
+        onToDo: function () {
+          //console.log(this);
+        }
+      });
+    });
+</script>
+</html>

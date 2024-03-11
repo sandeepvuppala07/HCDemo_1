@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<footer>
+    <div class="copyright py-2">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+
+                <div class="col-md-4 ">
+                    <div class="copyright-info">
+              <span class="text-white"> © Copyright
+                <script>
+                  document.write(new Date().getFullYear())
+                </script> <span class="text-warning">Telangana Highcourt </span> rights reserved</a>
+              </span>
+                    </div>
+                </div>
+                <div class="col-md-3 text-md-right"> <span class="text-white"><i class="fas fa-eye me-5"></i> &nbsp; Visitors
+              Count -
+              00035485 </span></div>
+                <div class="col-lg-5 text-md-right">
+
+                    <a th:href="@{/}" class="text-white">Website Policy &nbsp;/</a>
+                    <a th:href="@{/}" class="text-white">Accessibility Statement &nbsp;/</a>
+                    <a th:href="@{/}" class="text-white">Site Map &nbsp;/</a>
+                    <a th:href="@{/}" class="text-white">Location Map</a>
+                </div>
+            </div><!-- Row end -->
+
+        </div><!-- Container end -->
+    </div>
+
+</footer>
+</body>
+</html>

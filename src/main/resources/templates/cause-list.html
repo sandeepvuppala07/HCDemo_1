@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{basehtml::Layout(~{::section})}">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Telangana Highcourt </title>
+
+    <!-- Mobile Specific Metas -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name=author content="Themefisher">
+    <meta name=generator content="">
+</head>
+
+<body>
+<section class="py-3 p-3 causes ">
+    <div class="container-fluid">
+        <div class="row Tenders pb-4">
+            <div class="col-lg-3 ">
+                <div th:replace="~{includes/sidebar :: side-bar}"></div>
+            </div>
+            <div class="col-lg-9 three Daily content-103 mt-2">
+                <h3>Cause List</h3>
+                <div class="row mt-5">
+                    <div class="col-md-4 col-sm-4">
+                        <a href="daily-wise.php">
+                            <div class="service-post">
+                                <div class="service-content">
+                                    <h2 class="service-title">Daily Wise</h2>
+                                </div>
+                                <div class="service-hover"></div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="service-post">
+                            <div class="service-content">
+                                <h2 class="service-title">Advance List</h2>
+                            </div>
+                            <div class="service-hover"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="service-post">
+                            <div class="service-content">
+                                <h2 class="service-title">Suplementary List</h2>
+                            </div>
+                            <div class="service-hover"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="service-post">
+                            <div class="service-content">
+                                <h2 class="service-title">Notice</h2>
+                            </div>
+                            <div class="service-hover"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="service-post">
+                            <div class="service-content">
+                                <h2 class="service-title">Archives</h2>
+                            </div>
+                            <div class="service-hover"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="service-post">
+                            <div class="service-content">
+                                <h2 class="service-title">Live Status of Cause List</h2>
+                            </div>
+                            <div class="service-hover"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+</body>
+
+</html>

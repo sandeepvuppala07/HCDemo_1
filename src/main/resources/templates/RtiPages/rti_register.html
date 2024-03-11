@@ -93,16 +93,12 @@
                         <label for="stateselid">State<b class="warn">*</b></label>
                         <select th:field="*{stateId}" class="form-control" id="stateselid">
                             <option th:value="-1" selected>select</option>
-                            <option th:value="1" th:text="Telangana" ></option>
-                            <option th:value="2" th:text="'Andhra Pradesh'"></option>
                         </select>
                     </div>
                     <div class="col-lg-2 mb-3">
                         <label for="distselid">District<b class="warn">*</b></label>
                         <select id="distselid" th:field="*{districtId}" class="form-control">
                             <option th:value="-1"  selected>Select</option>
-                            <option  th:value="1" th:text="Guntur" ></option>
-                            <option  th:value="2" th:text="Hyderabad" ></option>
                         </select>
                     </div>
                     <div class="col-lg-4 mb-3">

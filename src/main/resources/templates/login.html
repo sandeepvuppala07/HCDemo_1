@@ -1,99 +1,103 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{basehtml::Layout(~{::section})}">>
+
 
 <head>
-	<meta charset="ISO-8859-1">
-	<title>RTI Login</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <meta charset="utf-8">
+    <title>Telangana Highcourt </title>
+
+    <!-- Mobile Specific Metas -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name=author content="Themefisher">
+    <meta name=generator content="">
+
+
 </head>
 
 <body>
-	<div class="container">
-		<h1>RTA Login</h1>
-		<hr>
-		<h2>User Registration Form For RTA Application</h2>
 
-		<!--<form action="#" th:action="@{/register}" th:object="${rtaUserDetailsDto}" method="POST">
-			<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
-              <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>    
-</div>
-			<label for="citizen">Citizen</label><strong style="color: red;">*</strong>
-			<select th:field="*{citizen}" class="form-control mb-4 col-4">
-				<option th:value="1" th:text="Yes"></option>
-				<option th:value="0" th:text="No"></option>
-			</select>
-			
-			<label for="userName">Name</label><strong style="color: red;">*</strong>
-			<input type="text" th:field="*{userName}" placeholder="Name" class="form-control mb-4 col-4">
-			<span th:if="${#fields.hasErrors('userName')}" class="error" th:errors="*{userName}">Name Error</span> 
-			
-			<label>Father's Name</label><strong style="color: red;">*</strong>
-			<input type="text" th:field="*{fatherName}" placeholder="Father's Name" class="form-control mb-4 col-4">
-			
-			<label>Gender</label>
-			<select th:field="*{gender}" class="form-control mb-4 col-4">
-				<option th:value="1" th:text="Male"></option>
-				<option th:value="0" th:text="Female"></option>
-			</select>
-			
-			<label>Address</label><strong style="color: red; font-size:70%;">* <br>Note:- Only alphabets A-Z a-z number
-				0-9 and special characters , . - _ ( ) / @ = ? \ are allowed.</strong>
-			<input type="text" th:field="*{address}" placeholder="Address" class="form-control mb-4 col-4">
-			
-			<label>State</label><strong style="color: red;">*</strong>
-			<select th:field="*{stateId}" class="form-control mb-4 col-4">
-				<option th:value="1" th:text="'Andhra Pradesh'"></option>
-				<option th:value="0" th:text="Telangana"></option>
-			</select>
-			
-			<label>District</label><strong style="color: red;">*</strong>
-			<select th:field="*{districtId}" class="form-control mb-4 col-4">
-				<option th:value="1" th:text="Hyderabad"></option>
-				<option th:value="0" th:text="Secunderabad"></option>
-			</select>
-			
-			<label>Pincode</label><strong style="color: red;">*</strong>
-			<input type="text" th:field="*{pincode}" placeholder="Pincode" class="form-control mb-4 col-4">
-			
-			<label>Is Applicant below proverty line?</label><strong style="color: red;">*</strong>
-			<select th:field="*{bpl}" class="form-control mb-4 col-4">
-				<option th:value="1" th:text="Yes"></option>
-				<option th:value="0" th:text="No"></option>
-			</select>
-			
-			<label>BPL Card No</label><strong style="color: red;">*</strong>
-			<input type="text" th:field="*{bplNo}" placeholder="Address" class="form-control mb-4 col-4">
-			
-			<label>Scanned copy of BPL card</label><strong style="color: red; font-size:70%;">* <br> (only pdf & jpeg
-				files having size up to 1 MB)</strong>
-			<input type="file" th:field="*{bplCard}" accept="image/*" placeholder="BPL Card File"
-				class="form-control mb-4 col-4">
-				
-			<label>Security Question</label><strong style="color: red;">*</strong>
-			<select th:field="*{securityQuesId}" class="form-control mb-4 col-4">
-				<option th:value="1">What is your Mother's maiden name?</option>
-				<option th:value="2">What is the name of your first School?</option>
-				<option th:value="3">What is the name of your favourite book?</option>
-				<option th:value="4">Which city were you born in?</option>
-			</select>
-			
-			<label>Security Answer</label><strong style="color: red;">*</strong>
-			<input type="text" th:field="*{securityAns}" placeholder="Pincode" class="form-control mb-4 col-4">
-			
-			<label>Email Id</label><strong style="color: red; font-size:70%;">* <br> (to be used as USERNAME)*</strong>
-			<input type="text" th:field="*{mailId}" placeholder=" Email" class="form-control mb-4 col-4">
-			
-			<label>Mobile No</label><strong style="color: red; font-size:70%;">* <br> (For receiving SMS alerts and
-				Activation Key)*</strong>
-			<input type="text" th:field="*{mobileNo}" placeholder=" Email" class="form-control mb-4 col-4">
-			<button type="submit" class="btn btn-info col-2">Register</button>
-		</form>
--->
-		<hr>
+<section class="py-5 p-3 login">
+    <div class="container-fluid">
+        <div class="row  pb-4">
+            <div class="col-lg-7">
+                <div th:if="${param.error}" class="alert alert-danger">
+                    Invalid Username and password
+                </div>
+                <div th:if="${param.logout}" class="alert alert-success">
+                    You have been logged out
+                </div>
+                <h3>Online Application Portal</h3>
+                <p>(Under the Right to Information Act, 2005)</p>
+                <h6 class="mt-5 pb-4">This online application portal is meant for filing RTI applications and
+                    RTI
+                    Appeals in the
+                    High Court for the State of Telangana.</h6>
+                <ul class="listItemss pb-4">
 
-		<!--<a th:href="@{/}"> Back to Employee List</a>-->
-	</div>
+                    <li>The fee for the RTI Application is Rs.10/- which has to be paid online through the
+                        various options provided in the payment module.
+                    </li>
+                    <li>Please note that Appeals against orders passed on applications submitted physically
+                        cannot be filed through this online portal.
+                    </li>
+                    <li>Suggestions for improving this online portal are most welcome <br></li>
+                </ul>
+
+                <h5>Instructions/User Manual</h5>
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-4">
+                <div class="bg-login p-4">
+                    <h3 class="pb-4">Login</h3>
+                    <form th:action="@{/tshc/login-process}" method="post">
+                        <div class="form-row">
+
+                            <div class="form-group col-md-12 ">
+                                <label>Username* (email ID)</label>
+                                <input type="text" class="form-control" id="jo_code1"
+                                      name="username" placeholder="Enter Your JO Code">
+
+                            </div>
+                            <div class="form-group col-md-12 ">
+                                <label>Password*</label>
+                                <input type="text" class="form-control" id="jo_code2"
+                                     name="password"  placeholder="Enter Your JO Code">
+
+                            </div>
+                            <div class="form-group col-md-12 ">
+                                <label>Enter the Validation code*</label><br>
+                                <div class="otp-wrapper">
+                                    <span class="me-4">569823</span>
+                                    <input type="number" class="otp-input" maxlength="1"/>
+                                    <input type="number" class="otp-input" maxlength="1"/>
+                                    <input type="number" class="otp-input" maxlength="1"/>
+                                    <input type="number" class="otp-input" maxlength="1"/>
+                                    <input type="number" class="otp-input" maxlength="1"/>
+                                    <input type="number" class="otp-input" maxlength="1"/>
+                                </div>
+                            </div>
+
+                        </div>
+                        <p class="text-md-right text-danger">Forgot Password?</p>
+                        <div class="col-lg-12">
+                            <button type="submit" class=" btn btn-info w-100 mb-1">Login</button>
+                            <p class="text-center">Not Registered Yet? <a th:href="@{/register}"><b>Sign Up Here</b></a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</section>
+
+
 </body>
 
 </html>

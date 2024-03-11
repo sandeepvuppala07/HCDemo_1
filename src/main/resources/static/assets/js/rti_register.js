@@ -133,6 +133,7 @@ function bpldropdown(){
    }
    function validateState(){
 	    var stateVal = $('#stateselid').find(":selected").val();
+	    getDistrictsByStateId(stateVal);
 	    if(stateVal==-1){
 			$("#stateselid").addClass("is-invalid"); 
 			stateError = true;
@@ -140,6 +141,7 @@ function bpldropdown(){
 		else{
 			$("#stateselid").removeClass("is-invalid"); 
 			stateError = false;
+			
 		}
    }
    function validateDistrict(){
@@ -245,6 +247,36 @@ function bplfileTr(){
 	 })
 	 
 }
+function getStates(){
+	$.ajax({
+	  type: "GET",
+	  url: "getstates",
+	  cache: false,
+	  success: function(data){ 
+	          
+                $.each(data,function(index,value){
+                    $("#stateselid").append('<option value=' + value.stateId + '>' + value.statename + '</option>');
+                });
+	          }
+	});
+}
+function getDistrictsByStateId(stateId){
+	 $("#distselid")
+	        .empty()
+	        .append('<option selected="selected" value="-1">Select</option>');
+	if(stateId!=-1){
+		$.ajax({
+            url : "getdistrictsbystateid/"+stateId,
+            type:"GET",
+            success: function(data) {
+                $.each(data,function(index,value)
+                {
+                    $("#distselid").append('<option value=' + value.districtId + '>' + value.districtName + '</option>');
+                });
+             }
+        })
+	}
+}
 function validateForm(){
 	   validateMobile();
 	   validateEmail();
@@ -286,6 +318,7 @@ function validateForm(){
    
     
   $(document).ready(function () { 
+	  getStates();
 	  $("#userCheck").hide(); 
 	  $("#fatherNameCheck").hide(); 
 	  $("#addressCheck").hide();

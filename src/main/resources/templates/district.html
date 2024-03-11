@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Telangana Highcourt </title>
+
+    <script type="text/javascript" th:src="@{/assets/js/boo.min.js}"></script>
+    <link th:replace="~{includes/header-links :: header}">
+    <link type="text/css" rel="stylesheet"
+          href="https://districts.ecourts.gov.in/sites/default/files/css/css_lQaZfjVpwP_oGNqdtWCSpJT1EMqXdMiU84ekLLxQnc4.css"
+          media="all">
+    <link type="text/css" rel="stylesheet"
+          href="https://districts.ecourts.gov.in/sites/default/files/css/css_vZ_wrMQ9Og-YPPxa1q4us3N7DsZMJa-14jShHgRoRNo.css"
+          media="all">
+    <link type="text/css" rel="stylesheet"
+          href="https://districts.ecourts.gov.in/sites/default/files/css/css_EPsgvacVXxxhwhLr4DGj8P1D4es4L_QnnRJPHn_TJHE.css"
+          media="all">
+    <link type="text/css" rel="stylesheet"
+          href="https://districts.ecourts.gov.in/sites/default/files/css/css_Ckg_-AdQ7_rQCHmeAMDEUx_WknXpfTPxvC_sYTaGnks.css"
+          media="all">
+    <link type="text/css" rel="stylesheet"
+          href="https://districts.ecourts.gov.in/sites/default/files/css/css_C2taD8iYwYsmvx34wM8kwjpXnCLKmK_f6Y96tp7f8FA.css"
+          media="all">
+
+    <script
+            src="https://districts.ecourts.gov.in/sites/default/files/js/js_WEt1b9-AlOPvI5EuGotYhj6sCJ9P77HOQcLV2OhGYNM.js"></script>
+    <script>jQuery.migrateMute = true; jQuery.migrateTrace = false;</script>
+    <script
+            src="https://districts.ecourts.gov.in/sites/default/files/js/js_H8qnk7vws1sGssNznS8ipz3Bep61ZmFpPuWukSYw_3Q.js"></script>
+    <script
+            src="https://districts.ecourts.gov.in/sites/default/files/js/js_lboD8mxHbiFYKzdGkJi9JvFQWJGyCslzWjcNjvVR3X0.js"></script>
+    <script
+            src="https://districts.ecourts.gov.in/sites/default/files/js/js_Qh5F61itUPYeVrkCva6Us_AsINRWc7ccFe5kY-1lzDs.js"></script>
+    <script
+            src="https://districts.ecourts.gov.in/sites/default/files/js/js_xDf00VWaOWrr1CC7pSK1IT057LUMWFK60_vd1bXXEiY.js"></script>
+    <script
+            src="https://districts.ecourts.gov.in/sites/default/files/js/js_y4bRBezyXHAMw5icgDDIyvMELp66p94Nd7OzsrDEZ1o.js"></script>
+    <script>
+        jQuery.extend(Drupal.settings, { "basePath": "\/", "pathPrefix": "", "setHasJsCookie": 0, "ajaxPageState": { "theme": "ecourts", "theme_token": "VO2-TxxGyGXPl8dkutoYtaWxhT02YRFgQokJnZhlCkI", "js": { "sites\/all\/modules\/contributed\/jquery_update\/replace\/jquery\/3.1\/jquery.min.js": 1, "0": 1, "sites\/all\/modules\/contributed\/jquery_update\/replace\/jquery-migrate\/3\/jquery-migrate.min.js": 1, "misc\/jquery-extend-3.4.0.js": 1, "misc\/jquery-html-prefilter-3.5.0-backport.js": 1, "misc\/jquery.once.js": 1, "misc\/drupal.js": 1, "sites\/all\/modules\/contributed\/views_slideshow\/js\/views_slideshow.js": 1, "sites\/all\/modules\/custom\/courts\/js\/courts.js": 1, "sites\/all\/modules\/contributed\/lightbox2\/js\/lightbox.js": 1, "sites\/all\/libraries\/jquery.cycle\/jquery.cycle.all.js": 1, "sites\/all\/modules\/contributed\/views_slideshow\/contrib\/views_slideshow_cycle\/js\/views_slideshow_cycle.js": 1, "sites\/all\/themes\/ecourts\/js\/jquery.flexslider.js": 1, "sites\/all\/themes\/ecourts\/js\/custom.js": 1 }, "css": { "modules\/system\/system.base.css": 1, "modules\/system\/system.menus.css": 1, "modules\/system\/system.messages.css": 1, "modules\/system\/system.theme.css": 1, "sites\/all\/modules\/contributed\/views_slideshow\/views_slideshow.css": 1, "sites\/all\/modules\/contributed\/date\/date_api\/date.css": 1, "sites\/all\/modules\/contributed\/date\/date_popup\/themes\/datepicker.1.7.css": 1, "modules\/field\/theme\/field.css": 1, "modules\/node\/node.css": 1, "modules\/search\/search.css": 1, "modules\/user\/user.css": 1, "sites\/all\/modules\/contributed\/views\/css\/views.css": 1, "sites\/all\/modules\/contributed\/ctools\/css\/ctools.css": 1, "sites\/all\/modules\/contributed\/lightbox2\/css\/lightbox.css": 1, "sites\/all\/modules\/contributed\/panels\/css\/panels.css": 1, "sites\/all\/modules\/contributed\/panels\/plugins\/layouts\/onecol\/onecol.css": 1, "sites\/all\/modules\/contributed\/views_slideshow\/contrib\/views_slideshow_cycle\/views_slideshow_cycle.css": 1, "sites\/all\/themes\/ecourts\/system.menus.css": 1, "sites\/all\/themes\/ecourts\/system.messages.css": 1, "sites\/all\/themes\/ecourts\/system.theme.css": 1, "sites\/all\/themes\/ecourts\/css\/flexslider.css": 1, "sites\/all\/themes\/ecourts\/css\/font-awesome.min.css": 1, "sites\/all\/themes\/ecourts\/css\/style.css": 1, "sites\/all\/themes\/ecourts\/css\/site-responsive.css": 1 } }, "encrypt_submissions": { "baseUrl": "https:\/\/districts.ecourts.gov.in" }, "lightbox2": { "rtl": 0, "file_path": "\/(\\w\\w\/)public:\/", "default_image": "\/sites\/all\/modules\/contributed\/lightbox2\/images\/brokenimage.jpg", "border_size": 10, "font_color": "000", "box_color": "fff", "top_position": "", "overlay_opacity": "0.8", "overlay_color": "000", "disable_close_click": true, "resize_sequence": 0, "resize_speed": 400, "fade_in_speed": 400, "slide_down_speed": 600, "use_alt_layout": false, "disable_resize": false, "disable_zoom": false, "force_show_nav": false, "show_caption": true, "loop_items": false, "node_link_text": "View Image Details", "node_link_target": false, "image_count": "Image !current of !total", "video_count": "Video !current of !total", "page_count": "Page !current of !total", "lite_press_x_close": "press \u003Ca href=\u0022#\u0022 onclick=\u0022hideLightbox(); return FALSE;\u0022\u003E\u003Ckbd\u003Ex\u003C\/kbd\u003E\u003C\/a\u003E to close", "download_link_text": "", "enable_login": false, "enable_contact": false, "keys_close": "c x 27", "keys_previous": "p 37", "keys_next": "n 39", "keys_zoom": "z", "keys_play_pause": "32", "display_image_size": "original", "image_node_sizes": "()", "trigger_lightbox_classes": "", "trigger_lightbox_group_classes": "", "trigger_slideshow_classes": "", "trigger_lightframe_classes": "", "trigger_lightframe_group_classes": "", "custom_class_handler": 0, "custom_trigger_classes": "", "disable_for_gallery_lists": true, "disable_for_acidfree_gallery_lists": true, "enable_acidfree_videos": true, "slideshow_interval": 5000, "slideshow_automatic_start": true, "slideshow_automatic_exit": true, "show_play_pause": true, "pause_on_next_click": false, "pause_on_previous_click": true, "loop_slides": false, "iframe_width": 600, "iframe_height": 400, "iframe_border": 1, "enable_video": false, "useragent": "Mozilla\/5.0 (iPhone; CPU iPhone OS 17_2 like Mac OS X) AppleWebKit\/605.1.15 (KHTML, like Gecko) CriOS\/121.0.6167.171 Mobile\/15E148 Safari\/604.1" }, "viewsSlideshow": { "districts_banner-block_1": { "methods": { "goToSlide": ["viewsSlideshowPager", "viewsSlideshowSlideCounter", "viewsSlideshowCycle"], "nextSlide": ["viewsSlideshowPager", "viewsSlideshowSlideCounter", "viewsSlideshowCycle"], "pause": ["viewsSlideshowControls", "viewsSlideshowCycle"], "play": ["viewsSlideshowControls", "viewsSlideshowCycle"], "previousSlide": ["viewsSlideshowPager", "viewsSlideshowSlideCounter", "viewsSlideshowCycle"], "transitionBegin": ["viewsSlideshowPager", "viewsSlideshowSlideCounter"], "transitionEnd": [] }, "paused": 0 } }, "viewsSlideshowCycle": { "#views_slideshow_cycle_main_districts_banner-block_1": { "num_divs": 1, "id_prefix": "#views_slideshow_cycle_main_", "div_prefix": "#views_slideshow_cycle_div_", "vss_id": "districts_banner-block_1", "effect": "fade", "transition_advanced": 0, "timeout": 5000, "speed": 700, "delay": 0, "sync": 1, "random": 0, "pause": 1, "pause_on_click": 0, "play_on_hover": 0, "action_advanced": 0, "start_paused": 0, "remember_slide": 0, "remember_slide_days": 1, "pause_in_middle": 0, "pause_when_hidden": 0, "pause_when_hidden_type": "full", "amount_allowed_visible": "", "nowrap": 0, "pause_after_slideshow": 0, "fixed_height": 1, "items_per_slide": 1, "wait_for_image_load": 1, "wait_for_image_load_timeout": 3000, "cleartype": 0, "cleartypenobg": 0, "advanced_options": "{}" } }, "urlIsAjaxTrusted": { "\/telangana": true } });
+    </script>
+    <!--[if lt IE 9]>
+    <script src="/sites/all/themes/zen/js/html5-respond.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        var fontSize = "100";
+    </script>
+    <style>
+        #header {
+          float: left;
+          width: 100%;
+          margin-bottom: 10px;
+          padding-top: 0px;
+        }
+
+        body {
+          font-family: "Nunito Sans";
+
+        }
+    </style>
+</head>
+
+<body>
+<div class="body-inner">
+    <!-- TOP BAR SECTION START -->
+    <div th:replace="~{includes/top-bar :: header}"></div>
+
+    <!-- HEADER SECTION END -->
+    <!-- SLider Section Start -->
+    <header th:replace="~{includes/header :: header}"></header>
+    <!-- SLIDER SECTION END -->
+    <section class="bg-white Tenders">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 mt-3">
+                    <div th:replace="~{includes/sidebar :: side-bar}"></div>
+                </div>
+                <div class="col-lg-9">
+                    <div id="content" class="bg-white">
+                        <div class="wrapper">
+                            <div>
+                                <div class="">
+                                    <div class="clearfix"></div>
+                                    <div class="panel-display panel-1col clearfix" id="map-position-list">
+                                        <div class="panel-panel panel-col">
+                                            <div>
+                                                <div class="panel-pane pane-views pane-india">
+                                                    <div
+                                                            class="view view-india view-id-india view-display-id-block_2 view-dom-id-abd7176c54ade77f7f265edeb35d9c6f">
+                                                        <div class="view-content">
+                                                            <div>
+                                                                <div class="field-content state-maps">
+                                                                    <img typeof="foaf:Image"
+                                                                         src="https://districts.ecourts.gov.in/sites/default/files/telangana_0.gif"
+                                                                         width="661" height="600" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="panel-pane pane-views pane-india">
+                                                    <div
+                                                            class="view view-india view-id-india view-display-id-block_1 view-dom-id-a8d3e8aca567541921c8575966bc13bd">
+                                                        <div class="view-content">
+                                                            <div class="item-list">
+                                                                <ul class="state-district">
+                                                                    <li class="Adilabad5722"><a th:href="@{/tshc/view}">Adilabad</a></li>
+                                                                    <li class="Karimnagar5723"><a
+                                                                            href="inv_categories.php?dist=Karimnagar">Karimnagar</a>
+                                                                    </li>
+                                                                    <li class="Khammam5724"><a href="inv_categories.php?dist=Khammam">Khammam</a></li>
+                                                                    <li class="Medak5725"><a href="inv_categories.php?dist=Medak">Medak</a></li>
+                                                                    <li class="Mahboobnagar5726"><a
+                                                                            href="inv_categories.php?dist=Mahboobnagar">Mahboobnagar</a>
+                                                                    </li>
+                                                                    <li class="Nalgonda5727"><a href="inv_categories.php?dist=Nalgonda">Nalgonda</a>
+                                                                    </li>
+                                                                    <li class="Nizamabad5728"><a href="inv_categories.php?dist=Nizamabad">Nizamabad</a>
+                                                                    </li>
+                                                                    <li class="Warangal5729"><a href="inv_categories.php?dist=Warangal">Warangal</a>
+                                                                    </li>
+                                                                    <li class="Rangareddy5730"><a
+                                                                            href="inv_categories.php?dist=Rangareddy">Rangareddy</a>
+                                                                    </li>
+
+                                                                    <li class="Bhadradri Kothagudem5766"><a
+                                                                            href="inv_categories.php?dist=Kothagudem">Bhadradri
+                                                                        Kothagudem</a></li>
+                                                                    <li class="Hanumakonda5767"><a
+                                                                            href="inv_categories.php?dist=Hanumakonda">Hanumakonda</a>
+                                                                    </li>
+                                                                    <li class="Jagitial5768"><a href="inv_categories.php?dist=Jagitial">Jagitial</a>
+                                                                    </li>
+                                                                    <li class="Jangoan5769"><a href="inv_categories.php?dist=Jangoan">Jangoan</a></li>
+                                                                    <li class="Jayashankar Bhupalapally5770"><a
+                                                                            href="inv_categories.php?dist=Bhupalapally">Jayashankar Bhupalapally</a></li>
+                                                                    <li class="Jogulamba Gadwal5771"><a href="inv_categories.php?dist=Gadwal">Jogulamba
+                                                                        Gadwal</a></li>
+                                                                    <li class="Kamareddy5772"><a href="inv_categories.php?dist=Kamareddy">Kamareddy</a>
+                                                                    </li>
+                                                                    <li class="Kumuram Bheem Asifabad5773"><a
+                                                                            href="inv_categories.php?dist=Asifabad">Kumuram
+                                                                        Bheem Asifabad</a></li>
+                                                                    <li class="Mahabubabad5774"><a
+                                                                            href="inv_categories.php?dist=Mahabubabad">Mahabubabad</a>
+                                                                    </li>
+                                                                    <li class="Mancherial5775"><a
+                                                                            href="inv_categories.php?dist=Mancherial">Mancherial</a>
+                                                                    </li>
+                                                                    <li class="Medchal Malkajgiri5776"><a
+                                                                            href="inv_categories.php?dist=Medchal Malkajgiri">Medchal Malkajgiri</a></li>
+                                                                    <li class="hyderabad"><a href="inv_categories.php?dist=Hyderabad">Hyderabad</a></li>
+                                                                    <li class="Mulugu5777"><a href="inv_categories.php?dist=Mulugu">Mulugu</a></li>
+                                                                    <li class="Nagarkurnool5778"><a
+                                                                            href="inv_categories.php?dist=Nagarkurnool">Nagarkurnool</a>
+                                                                    </li>
+                                                                    <li class="Narayanpet5779"><a
+                                                                            href="inv_categories.php?dist=Narayanpet">Narayanpet</a>
+                                                                    </li>
+                                                                    <li class="Nirmal5780"><a href="inv_categories.php?dist=Nirmal">Nirmal</a></li>
+                                                                    <li class="Peddapalli5781"><a
+                                                                            href="inv_categories.php?dist=Peddapalli">Peddapalli</a>
+                                                                    </li>
+                                                                    <li class="Rajanna Sircilla5782"><a
+                                                                            href="inv_categories.php?dist=Rajannasircilla">Rajanna
+                                                                        Sircilla</a></li>
+                                                                    <li class="Sangareddy5783"><a
+                                                                            href="inv_categories.php?dist=Sangareddy">Sangareddy</a>
+                                                                    </li>
+                                                                    <li class="Siddipet5784"><a href="inv_categories.php?dist=Siddipet">Siddipet</a>
+                                                                    </li>
+                                                                    <li class="Suryapet5785"><a href="inv_categories.php?dist=Suryapet">Suryapet</a>
+                                                                    </li>
+                                                                    <li class="Vikarabad5786"><a href="inv_categories.php?dist=Vikarabad">Vikarabad</a>
+                                                                    </li>
+                                                                    <li class="Wanaparthy5787"><a
+                                                                            href="inv_categories.php?dist=Wanaparthy">Wanaparthy</a>
+                                                                    </li>
+                                                                    <li class="Yadadri Bhuvanagiri5788"><a
+                                                                            href="inv_categories.php?dist=Yadadri">Yadadri
+                                                                        Bhuvanagiri</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+
+
+
+
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- SLider Section end -->
+    <!-- © Copyright SECTION START -->
+    <div th:replace="~{includes/footer :: footer}"></div>
+
+    <!-- © Copyright END -->
+    <!-- Bootstrap jQuery -->
+    <script th:replace="~{includes/footer-links :: script}"></script>
+
+    <!-- Bootstrap jQuery -->
+</div>
+
+
+</body>
+
+</html>
