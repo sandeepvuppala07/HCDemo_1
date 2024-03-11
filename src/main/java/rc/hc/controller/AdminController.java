@@ -15,13 +15,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import rc.hc.dto.PasswordResetRequestDto;
+import rc.hc.dto.PasswordResetResponseDto;
 import rc.hc.dto.RtaUserdetailsDto;
 import rc.hc.service.ImageStorageService;
 import rc.hc.service.RtaService;
+import rc.hc.utils.TwilioUtils;
 
 @Controller
 public class AdminController {
@@ -32,6 +37,8 @@ public class AdminController {
 	@Autowired
 	ImageStorageService imageStorageService;
 
+	@Autowired
+	TwilioUtils twilioUtils;
 	/*
 	 * @Autowired RtaUserdetailsDto rtaUserdetailsDto;
 	 */
@@ -68,4 +75,19 @@ public class AdminController {
 		return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf("image/jpeg")).body(imageData);
 	}
     
+	@GetMapping("/sendotp")
+	@ResponseBody
+	public PasswordResetResponseDto sendOtp(@RequestBody PasswordResetRequestDto passwordResetRequestDto) {
+		return twilioUtils.senOtpForMobNo(passwordResetRequestDto);
+	}
+	
+	@GetMapping("/validateotp/{userIpOtp}/{userName}")
+	@ResponseBody
+	public String validateOtp(@PathVariable("userIpOtp")String userIpOtp, @PathVariable("userName")String userName) {
+		return twilioUtils.validateOtp(userIpOtp, userName);
+	}
+	
 }
+
+
+
